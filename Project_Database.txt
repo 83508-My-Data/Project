@@ -1,0 +1,369 @@
+0.Trigger
+
+USE [TaskBuddy]
+GO
+/****** Object:  Trigger [dbo].[trg_UpdatePassword]    Script Date: 30-07-2024 10:00:38 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER TRIGGER [dbo].[trg_UpdatePassword]
+ON [dbo].[Users]
+AFTER UPDATE
+AS
+BEGIN
+    -- Check if the password was actually changed
+    IF UPDATE(Password)
+    BEGIN
+        -- Insert into PasswordChanges table only if password has changed
+        INSERT INTO dbo.Password_History (User_Id, Old_Password, New_Password, Updated_On)
+        SELECT
+            i.User_Id,
+            d.Password AS Old_Password,
+            i.Password AS New_Password,
+			i.Udated_At
+        FROM 
+            inserted i
+        INNER JOIN 
+            deleted d
+        ON 
+            i.User_Id = d.User_Id
+        WHERE 
+            i.Password <> d.Password;
+    END
+END
+
+
+
+
+
+1.Department:
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Department]    Script Date: 31-07-2024 04:56:19 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Department](
+	[Dept_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Dept_Name] [varchar](25) NOT NULL,
+	[Description] [text] NULL,
+ CONSTRAINT [PK_Department] PRIMARY KEY CLUSTERED 
+(
+	[Dept_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Dept_Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+
+
+2.Notification:
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Notifications]    Script Date: 31-07-2024 04:56:40 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Notifications](
+	[Notify_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Notification] [text] NOT NULL,
+	[Read_Status] [tinyint] NOT NULL,
+	[Created_On] [datetime] NOT NULL,
+	[User_Id_From] [int] NOT NULL,
+	[User_Id_To] [int] NOT NULL,
+ CONSTRAINT [PK_Notifications] PRIMARY KEY CLUSTERED 
+(
+	[Notify_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Notifications] ADD  DEFAULT ((0)) FOR [Read_Status]
+GO
+
+ALTER TABLE [dbo].[Notifications]  WITH CHECK ADD  CONSTRAINT [FK_Notifications_From] FOREIGN KEY([User_Id_From])
+REFERENCES [dbo].[Users] ([User_Id])
+GO
+
+ALTER TABLE [dbo].[Notifications] CHECK CONSTRAINT [FK_Notifications_From]
+GO
+
+ALTER TABLE [dbo].[Notifications]  WITH CHECK ADD  CONSTRAINT [FK_Notifications_To] FOREIGN KEY([User_Id_To])
+REFERENCES [dbo].[Users] ([User_Id])
+GO
+
+ALTER TABLE [dbo].[Notifications] CHECK CONSTRAINT [FK_Notifications_To]
+GO
+
+
+3.Otps
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Otps]    Script Date: 31-07-2024 04:56:57 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Otps](
+	[Otp_Id] [int] IDENTITY(1,1) NOT NULL,
+	[User_Id] [int] NOT NULL,
+	[Otp] [varchar](50) NOT NULL,
+	[Generated_On] [datetime] NOT NULL,
+	[Valid_Till] [datetime] NOT NULL,
+ CONSTRAINT [PK_Otps] PRIMARY KEY CLUSTERED 
+(
+	[Otp_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Otps]  WITH CHECK ADD  CONSTRAINT [FK_Otps_User] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[Users] ([User_Id])
+GO
+
+ALTER TABLE [dbo].[Otps] CHECK CONSTRAINT [FK_Otps_User]
+GO
+
+
+4.Password_History
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Password_History]    Script Date: 31-07-2024 05:00:52 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Password_History](
+	[Password_Id] [int] IDENTITY(1,1) NOT NULL,
+	[User_Id] [int] NOT NULL,
+	[Updated_On] [datetime] NOT NULL,
+	[Old_Password] [varchar](50) NOT NULL,
+	[New_Password] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Password_History] PRIMARY KEY CLUSTERED 
+(
+	[Password_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Password_History]  WITH CHECK ADD  CONSTRAINT [FK_Password_History_User] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[Users] ([User_Id])
+GO
+
+ALTER TABLE [dbo].[Password_History] CHECK CONSTRAINT [FK_Password_History_User]
+GO
+
+
+5.Project
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Project]    Script Date: 31-07-2024 05:01:37 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Project](
+	[Project_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Project_Title] [varchar](30) NOT NULL,
+	[Start_Date] [datetime] NOT NULL,
+	[End_Date] [datetime] NOT NULL,
+	[Manager_Id] [int] NOT NULL,
+ CONSTRAINT [PK_Project] PRIMARY KEY CLUSTERED 
+(
+	[Project_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+6.Roles
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Roles]    Script Date: 31-07-2024 05:02:18 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Roles](
+	[Role_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Role_Name] [varchar](25) NOT NULL,
+ CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
+(
+	[Role_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__Roles] UNIQUE NONCLUSTERED 
+(
+	[Role_Name] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+7.TaskCategorys
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[TaskCategorys]    Script Date: 31-07-2024 05:02:23 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TaskCategorys](
+	[TaskCategory_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Task_Name] [varchar](30) NOT NULL,
+ CONSTRAINT [PK_TaskCategorys] PRIMARY KEY CLUSTERED 
+(
+	[TaskCategory_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+8.Tasks
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Tasks]    Script Date: 31-07-2024 05:03:56 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Tasks](
+	[Task_Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [varchar](30) NOT NULL,
+	[Description] [text] NOT NULL,
+	[Attachment] [text] NOT NULL,
+	[Status] [tinyint] NOT NULL,
+	[Upload_At] [datetime] NOT NULL,
+	[Update_At] [datetime] NOT NULL,
+	[Priority] [int] NOT NULL,
+	[TaskCategory_Id] [int] NOT NULL,
+	[Project_Id] [int] NOT NULL,
+	[User_Id] [int] NOT NULL,
+	[Comment] [varchar](300) NULL,
+ CONSTRAINT [PK_Tasks] PRIMARY KEY CLUSTERED 
+(
+	[Task_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Tasks] ADD  CONSTRAINT [DF_Tasks_Status]  DEFAULT ((0)) FOR [Status]
+GO
+
+ALTER TABLE [dbo].[Tasks]  WITH CHECK ADD  CONSTRAINT [FK_Task_Project] FOREIGN KEY([Project_Id])
+REFERENCES [dbo].[Project] ([Project_Id])
+GO
+
+ALTER TABLE [dbo].[Tasks] CHECK CONSTRAINT [FK_Task_Project]
+GO
+
+ALTER TABLE [dbo].[Tasks]  WITH CHECK ADD  CONSTRAINT [FK_Task_User] FOREIGN KEY([User_Id])
+REFERENCES [dbo].[Users] ([User_Id])
+GO
+
+ALTER TABLE [dbo].[Tasks] CHECK CONSTRAINT [FK_Task_User]
+GO
+
+ALTER TABLE [dbo].[Tasks]  WITH CHECK ADD  CONSTRAINT [FK_Tast_Category] FOREIGN KEY([TaskCategory_Id])
+REFERENCES [dbo].[TaskCategorys] ([TaskCategory_Id])
+GO
+
+ALTER TABLE [dbo].[Tasks] CHECK CONSTRAINT [FK_Tast_Category]
+GO
+
+
+9.Users
+
+USE [TaskBuddy]
+GO
+
+/****** Object:  Table [dbo].[Users]    Script Date: 31-07-2024 05:04:01 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Users](
+	[User_Id] [int] IDENTITY(1,1) NOT NULL,
+	[First_Name] [varchar](25) NOT NULL,
+	[Last_Name] [varchar](25) NOT NULL,
+	[Email] [varchar](25) NOT NULL,
+	[Password] [varchar](25) NOT NULL,
+	[Mobile_No] [char](10) NOT NULL,
+	[Role_Id] [int] NOT NULL,
+	[Dept_Id] [int] NOT NULL,
+	[Address] [text] NULL,
+	[Created_At] [datetime] NOT NULL,
+	[Updated_At] [datetime] NOT NULL,
+	[IsActive] [tinyint] NOT NULL,
+ CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
+(
+	[User_Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__Mobile] UNIQUE NONCLUSTERED 
+(
+	[Mobile_No] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+ CONSTRAINT [UQ__Name] UNIQUE NONCLUSTERED 
+(
+	[Email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Users] ADD  CONSTRAINT [DF_Users_IsValid]  DEFAULT ((1)) FOR [IsActive]
+GO
+
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_] FOREIGN KEY([Dept_Id])
+REFERENCES [dbo].[Department] ([Dept_Id])
+GO
+
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_]
+GO
+
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD  CONSTRAINT [FK_Users_Role] FOREIGN KEY([Role_Id])
+REFERENCES [dbo].[Roles] ([Role_Id])
+GO
+
+ALTER TABLE [dbo].[Users] CHECK CONSTRAINT [FK_Users_Role]
+GO
+
+
+10. DataBase:>>>>>>>>> TaskBuddy
