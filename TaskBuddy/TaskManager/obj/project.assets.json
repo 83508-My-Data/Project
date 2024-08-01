@@ -4434,19 +4434,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\anike\\.nuget\\packages\\": {}
+    "C:\\Users\\subha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\sunbeam data\\Final_Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "projectUniqueName": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "D:\\sunbeam data\\Final_Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
-      "packagesPath": "C:\\Users\\anike\\.nuget\\packages\\",
-      "outputPath": "D:\\sunbeam data\\Final_Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
+      "projectPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
+      "outputPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\anike\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
