@@ -1,0 +1,68 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f8ff; /* Light blue background color */
+}
+
+.title {
+  text-align: center;
+  width: 30vw;
+  background-color: rgba(16, 31, 231, 0.8); /* Opacity added to background color */
+  padding: 20px;
+  border-radius: 10px 10px 0 0;
+  font-size: 2.5rem; /* Increase font size */
+  color: #f0f8ff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 10px; /* Reduce space between title and form */
+}
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  padding: 20px;
+  background-color: rgba(222, 222, 231, 0.637); /* Light blue background color with opacity */
+  border-radius: 0 0 10px 10px;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 10px;
+}
+
+label {
+  text-align: left; /* Left-align the labels */
+  display: block; /* Ensure the labels take up the full width of the cell */
+}
+
+input {
+  border: 1px solid #5f78e7;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+  margin: 5px;
+  width: 100%; /* Full width within the table cell */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+button {
+  background-color: #28a745; /* Green background color */
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  align-self: center; /* Center align the button */
+}
+
+button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
