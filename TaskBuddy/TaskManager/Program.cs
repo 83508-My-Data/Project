@@ -16,14 +16,34 @@ namespace TaskManager
 
             builder.Services.AddDbContext<TaskBuddyContext>((option) => { option.UseSqlServer("name=mycon"); });
 
-           /* builder.Services.AddCors((options) =>
-            {
-                options.AddPolicy("policy", (policybuilder) =>
-                {
-                    policybuilder.WithOrigins("*").WithHeaders("*").WithMethods("*");
-                });
+            builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
+               builder =>
+               {
+                   builder
+                   .WithOrigins("http://localhost:3000")
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   .AllowCredentials();
+               }));
 
-            });*/
+            //var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
+            //var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+
+            //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            // .AddJwtBearer(options =>
+            // {
+            //     options.TokenValidationParameters = new TokenValidationParameters
+            //     {
+            //         ValidateIssuer = true,
+            //         ValidateAudience = true,
+            //         ValidateLifetime = true,
+            //         ValidateIssuerSigningKey = true,
+            //         ValidIssuer = jwtIssuer,
+            //         ValidAudience = jwtIssuer,
+            //         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+            //     };
+            // });
+
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -42,9 +62,11 @@ namespace TaskManager
 
             app.UseAuthorization();
 
-            app.UseCors();
+            app.UseCors("CorsPolicy");
 
             app.MapControllers();
+
+            //app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             app.Run();
         }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models;
 
@@ -25,17 +26,36 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpGet("{id}")]
-        public User Get(int id)
+        public UserDto Get(int id)
         {
-            return _Context.Users.Find(id);
+            User user = _Context.Users.Find(id);
+            UserDto userDto = new UserDto();
+            userDto.FirstName = user.FirstName;
+            userDto.LastName = user.LastName;
+            userDto.Email = user.Email;
+            userDto.Address = user.Address;
+            userDto.UserId = user.UserId;
+            userDto.MobileNo = user.MobileNo;
+            return userDto;
         }
 
         [HttpPost]
-        public string Post([FromBody] User user)
+        public UserDto Login([FromBody] Login loginUser )
         {
-            _Context.Users.Add(user);
-            _Context.SaveChanges();
-            return "Added Successfully";
+            UserDto u =new UserDto();
+            foreach (var user in _Context.Users) 
+            { 
+                if(user.Email.Equals(loginUser.Email) && user.Password.Equals(loginUser.Password))
+                {
+                    Console.WriteLine(user);
+                    u.Email = user.Email;
+                    u.FirstName = user.FirstName;
+                    u.LastName = user.LastName; 
+                    u.Address = user.Address;
+                    
+                }
+            }
+            return u;
         }
 
         [HttpPut("{id}")]
@@ -58,5 +78,6 @@ namespace TaskBuddy.Controllers
             _Context.SaveChanges();
             return "Deleted Successfully";
         }
+       
     }
 }
