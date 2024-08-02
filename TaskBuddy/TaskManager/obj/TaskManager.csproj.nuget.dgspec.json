@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
+    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
+    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
-        "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
-        "outputPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\obj\\",
+        "projectPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

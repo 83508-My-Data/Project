@@ -1,38 +1,43 @@
 ﻿using System.Text.Json;
 
-namespace _00DemoMVC.ErrorLggers
+namespace TaskManager.ErrorLggers
 {
-    public class ErrorLgger
+    public class ErrorLogger
     {
-        private static ErrorLgger Instance = new ErrorLgger();
-        private ErrorLgger()
+        private static ErrorLogger Instance = new ErrorLogger();
+        private ErrorLogger()
         {
         }
 
-        public static ErrorLgger CurrentErrorLgger { get { return Instance; } }
+        public static ErrorLogger CurrentErrorLgger { get { return Instance; } }
 
         public void Log(string message)
         {
-            string path = "c:\\Log\\Log.txt";
+            string Path = "e:\\Log\\Log.json";
 
-            FileStream fs = null;
-            if (File.Exists(path))
+            var logEntry = new LogEntry
             {
-                fs = new FileStream(path, FileMode.Append, FileAccess.Write);
-            }
-            else
+                Timestamp = DateTime.Now,
+                Message = message
+            };
+
+
+
+
+            using (var fs = new FileStream(Path, File.Exists(Path) ? FileMode.Append : FileMode.Create, FileAccess.Write))
+            using (var writer = new StreamWriter(fs))
             {
-                fs = new FileStream(path, FileMode.Create, FileAccess.Write);
+                var json = JsonSerializer.Serialize(logEntry);
+                writer.WriteLine(json);
             }
 
-            StreamWriter writer = new StreamWriter(fs);
-            var LogMessage = String.Format("Logged at {0} : {1}", DateTime.Now.ToString(), message);
-            var json = JsonSerializer.Serialize(LogMessage);
-            writer.WriteLine(json);
-            writer.Close();
-            fs.Close();
-            writer = null;
-            fs = null;
+
+
         }
+    }
+    public class LogEntry
+    {
+        public DateTime Timestamp { get; set; }
+        public string Message { get; set; }
     }
 }
