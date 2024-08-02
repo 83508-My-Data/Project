@@ -16,15 +16,26 @@ namespace TaskManager
 
             builder.Services.AddDbContext<TaskBuddyContext>((option) => { option.UseSqlServer("name=mycon"); });
 
-            builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
-               builder =>
-               {
-                   builder
-                   .WithOrigins("http://localhost:3000")
-                   .AllowAnyMethod()
-                   .AllowAnyHeader()
-                   .AllowCredentials();
-               }));
+            //builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
+            //   builder =>
+            //   {
+            //       builder
+            //       .WithOrigins("http://localhost:3000")
+            //       .AllowAnyMethod()
+            //       .AllowAnyHeader()
+            //       .AllowCredentials();
+            //   }));
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("policy", policyBuilder =>
+                {
+                    policyBuilder
+                        .WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             //var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
             //var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
@@ -62,7 +73,7 @@ namespace TaskManager
 
             app.UseAuthorization();
 
-            app.UseCors("CorsPolicy");
+            app.UseCors("policy");
 
             app.MapControllers();
 

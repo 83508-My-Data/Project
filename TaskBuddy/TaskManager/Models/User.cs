@@ -39,5 +39,20 @@ namespace TaskManager.Models
 
         [Column("Address", TypeName = "text")]
         public string Address { get; set; }
+
+        [Column("Created_At", TypeName = "datetime")]
+        public DateTime CreatedAt { get; set; }= DateTime.Now;
+
+        [Column("Update_At", TypeName = "datetime")]
+        public DateTime UpdatedAt { get; set; }=DateTime.Now;
+
+        [Column("Is_Active", TypeName = "tinyint")]
+        public bool IsActive { get; set; }
+
+        [ForeignKey("Manager_Id")]
+        public User Manager_Id { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateOnly DOB {  get; set; }
     }
 }
