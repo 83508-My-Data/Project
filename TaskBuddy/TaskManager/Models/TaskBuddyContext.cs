@@ -28,6 +28,6 @@ namespace TaskManager.Models
 
         public DbSet<Role> Roles { get; set; }
 
-        //public DbSet<TaskCategory> TaskCategories { get; set; }
+        public DbSet<TaskCategory> TaskCategories { get; set; }
     }
 }
