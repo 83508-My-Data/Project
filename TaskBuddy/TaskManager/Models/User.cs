@@ -50,7 +50,7 @@ namespace TaskManager.Models
         public bool IsActive { get; set; }
 
         [ForeignKey("Manager_Id")]
-        public User Manager_Id { get; set; }
+        public User ManagerId { get; set; }
 
         [Column(TypeName = "date")]
         public DateOnly DOB {  get; set; }

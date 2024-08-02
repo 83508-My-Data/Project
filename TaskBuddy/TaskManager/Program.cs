@@ -13,8 +13,6 @@ namespace TaskManager
 
             builder.Services.AddControllers();
 
-
-<<<<<<< HEAD
             //builder.Services.AddCors(options => options.AddPolicy("CorsPolicy",
             //   builder =>
             //   {
@@ -27,25 +25,8 @@ namespace TaskManager
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("policy", policyBuilder =>
-                {
-                    policyBuilder
-                        .WithOrigins("http://localhost:3000")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-=======
-            builder.Services.AddDbContext<TaskBuddyContext>((options) =>
-            {
-                options.UseSqlServer("name=mycon");
->>>>>>> 7553ad41e6e6c294492ec682fe4ca7533de1d64d
-            });
-
-
-
-            builder.Services.AddCors(options =>
-            {
-                options.AddPolicy("policy", policyBuilder =>
+                options.AddPolicy("policy",
+                policyBuilder =>
                 {
                     policyBuilder
                         .WithOrigins("http://localhost:3000")
@@ -53,6 +34,9 @@ namespace TaskManager
                         .AllowAnyMethod();
                 });
             });
+
+            builder.Services.AddDbContext<TaskBuddyContext>((options) => { options.UseSqlServer("name=mycon"); });
+
             //var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
             //var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
 
@@ -88,11 +72,7 @@ namespace TaskManager
 
             app.UseAuthorization();
 
-<<<<<<< HEAD
-            app.UseCors("policy");
-=======
             app.UseCors("policy"); // Apply CORS policy
->>>>>>> 7553ad41e6e6c294492ec682fe4ca7533de1d64d
 
             app.MapControllers();
 
