@@ -31,7 +31,7 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpPost]
-        public string Post([FromBody] User user)
+        public string RegisterUser([FromBody] User user)
         {
             _Context.Users.Add(user);
             _Context.SaveChanges();
@@ -58,5 +58,7 @@ namespace TaskBuddy.Controllers
             _Context.SaveChanges();
             return "Deleted Successfully";
         }
+        
+        
     }
 }
