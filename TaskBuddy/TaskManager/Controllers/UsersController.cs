@@ -9,7 +9,6 @@ namespace TaskBuddy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   // [EnableCors("policy")]
     public class UsersController : ControllerBase
     {
         private TaskBuddyContext _Context = null;
