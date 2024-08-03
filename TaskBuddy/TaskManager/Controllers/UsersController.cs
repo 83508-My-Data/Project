@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using TaskManager.DTO;
 using TaskManager.ErrorLggers;
 using TaskManager.Models;
 
@@ -73,45 +75,53 @@ namespace TaskBuddy.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public string Put(int id, [FromBody] User userUpdated)
-        {
-            User userToUpdate = _Context.Users.Find(id);
-            userToUpdate.FirstName = userUpdated.FirstName;
-            userToUpdate.LastName = userUpdated.LastName;
-            userToUpdate.Address = userUpdated.Address;
-            userToUpdate.MobileNo = userUpdated.MobileNo;
+        [HttpPost("/register")]
+        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto) 
+        { 
+            User user = new User();
+            user.FirstName = registrationDto.FirstName;
+            user.LastName = registrationDto.LastName;
+            user.Email = registrationDto.Email;
+            user.Password = registrationDto.Password;
+            user.MobileNo = registrationDto.MobileNo;
+            user.Address = registrationDto.Address;
+            user.role = _Context.Roles.Find(registrationDto.RoleId);
+            user.department = _Context.Departments.Find(registrationDto.DeptId);
+            user.CreatedAt = DateTime.Now;
+            user.UpdatedAt = DateTime.Now;
+            user.IsActive = true;
+            user.DOB = registrationDto.DOB;
+            _Context.Users.Add(user);
             _Context.SaveChanges();
-            return "Updated Successfully";
+            return Created();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateUserDetails(int id, [FromBody] UpdateUserDto userUpdated)
+        {
+            User user = _Context.Users.Find(id);
+            user.FirstName = userUpdated.FirstName;
+            user.LastName = userUpdated.LastName;
+            user.Email = userUpdated.Email;
+            user.Address= userUpdated.Address;
+            user.UpdatedAt= DateTime.Now;
+            user.MobileNo= userUpdated.MobileNo;
+            user.DOB= userUpdated.DOB;
+            _Context.SaveChanges();
+            return Ok("Succesfully Updated");
         }
 
         [HttpDelete("{id}")]
         public string Delete(int id)
         {
-            User userToBeDeleted = _Context.Users.Find(id);
-            _Context.Users.Remove(userToBeDeleted);
-            _Context.SaveChanges();
-            return "Deleted Successfully";
+            return null;
         }
-        [HttpGet("/error")]
-        public void Error()
-        {
-            ErrorLogger el = ErrorLogger.CurrentErrorLgger;
-            el.Log("hello how are you");
-        }
+       
         [HttpGet("/password")]
         public string Password()
         {
             string eps = PasswordEncrypt.HashPassword("hello");
             return eps;
-        }
-
-        [HttpPost("/Register")]
-        public IActionResult Register([FromBody] User user)
-        {
-            _Context.Users.Add(user);
-            _Context.SaveChanges();
-            return Created();
         }
     }
 }
