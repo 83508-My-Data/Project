@@ -20,6 +20,9 @@ namespace TaskManager.Models
 
         [Column("Description", TypeName = "text")]
         public string Description { get; set; }
+        
+        [Column(TypeName = "bit")]
+        public bool IsValid { get; set; }
 
     }
 }
