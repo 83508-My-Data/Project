@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
+    "C:\\Users\\subha\\OneDrive\\Desktop\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
+    "C:\\Users\\subha\\OneDrive\\Desktop\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "C:\\Users\\subha\\OneDrive\\Desktop\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
+        "projectPath": "C:\\Users\\subha\\OneDrive\\Desktop\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\subha\\OneDrive\\Desktop\\Project\\TaskBuddy\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

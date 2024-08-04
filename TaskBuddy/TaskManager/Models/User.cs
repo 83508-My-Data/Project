@@ -49,11 +49,8 @@ namespace TaskManager.Models
         [Column("Is_Active", TypeName = "tinyint")]
         public bool IsActive { get; set; }
 
-        [Column("Manager_Id", TypeName = "int")]
-        public int? ManagerId { get; set; }
-
-        [ForeignKey("ManagerId")]
-        public User Manager { get; set; }
+        [ForeignKey("Manager_Id")]
+        public User ManagerId { get; set; }
 
         [Column(TypeName = "date")]
         public DateOnly DOB {  get; set; }

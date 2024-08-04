@@ -76,8 +76,8 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpPost("/register")]
-        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto)
-        {
+        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto) 
+        { 
             User user = new User();
             user.FirstName = registrationDto.FirstName;
             user.LastName = registrationDto.LastName;
@@ -103,39 +103,34 @@ namespace TaskBuddy.Controllers
             user.FirstName = userUpdated.FirstName;
             user.LastName = userUpdated.LastName;
             user.Email = userUpdated.Email;
-            user.Address = userUpdated.Address;
-            user.UpdatedAt = DateTime.Now;
-            user.MobileNo = userUpdated.MobileNo;
-            user.DOB = userUpdated.DOB;
+            user.Address= userUpdated.Address;
+            user.UpdatedAt= DateTime.Now;
+            user.MobileNo= userUpdated.MobileNo;
+            user.DOB= userUpdated.DOB;
             _Context.SaveChanges();
             return Ok("Succesfully Updated");
         }
 
         [HttpPut("/password/{id}")]
-        public IActionResult UpdatePassword(int id, [FromBody] UpdatePasswordDTO updatePasswordDTO)
+        public IActionResult UpdatePassword( int id, [FromBody] UpdatePasswordDTO updatePasswordDTO )
         {
-            User user = _Context.Users.Find(id);
-            string OldPassword = user.Password;
-            if (!OldPassword.Equals(Password(updatePasswordDTO.OldPassword)))
+            string OldPassword = _Context.Users.Find(id).Password;
+            if(!OldPassword.Equals(Password(updatePasswordDTO.OldPassword)) )
             {
                 return Ok(new { error = "Old Password Not Matched" });
             }
-            user.Password = updatePasswordDTO.NewPassword;
-            _Context.SaveChanges();
             return Ok("Password Updated");
         }
 
         [HttpDelete("{id}")]
         public string DeactivateUser(int id)
         {
-            User userToBeDeactivated = _Context.Users.Find(id);
+            User userToBeDeactivated=_Context.Users.Find(id);
             userToBeDeactivated.IsActive = false;
             _Context.SaveChanges();
             return "User Is Deleted";
         }
-
-
-        [HttpGet("/password")]
+       
         public string Password(string password)
         {
             string EncryptedPassword = PasswordEncrypt.HashPassword(password);
