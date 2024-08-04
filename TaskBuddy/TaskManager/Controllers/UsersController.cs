@@ -51,7 +51,7 @@ namespace TaskBuddy.Controllers
             //}
             //return "invalid login credential";
             //FirstOrDefault =  when there is no match found it returns null
-            var user = _Context.Users.Where(u => u.Email.Equals(loginUser.Email) && u.Password.Equals(loginUser.Password)).FirstOrDefault();
+            var user = _Context.Users.Where(u => u.Email.Equals(loginUser.Email) && u.Password.Equals(Password(loginUser.Password))).FirstOrDefault();
             if (user != null)
             {
 
@@ -76,13 +76,13 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpPost("/register")]
-        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto) 
-        { 
+        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto)
+        {
             User user = new User();
             user.FirstName = registrationDto.FirstName;
             user.LastName = registrationDto.LastName;
             user.Email = registrationDto.Email;
-            user.Password = registrationDto.Password;
+            user.Password = Password(registrationDto.Password);
             user.MobileNo = registrationDto.MobileNo;
             user.Address = registrationDto.Address;
             user.role = _Context.Roles.Find(registrationDto.RoleId);
@@ -103,25 +103,43 @@ namespace TaskBuddy.Controllers
             user.FirstName = userUpdated.FirstName;
             user.LastName = userUpdated.LastName;
             user.Email = userUpdated.Email;
-            user.Address= userUpdated.Address;
-            user.UpdatedAt= DateTime.Now;
-            user.MobileNo= userUpdated.MobileNo;
-            user.DOB= userUpdated.DOB;
+            user.Address = userUpdated.Address;
+            user.UpdatedAt = DateTime.Now;
+            user.MobileNo = userUpdated.MobileNo;
+            user.DOB = userUpdated.DOB;
             _Context.SaveChanges();
             return Ok("Succesfully Updated");
         }
 
-        [HttpDelete("{id}")]
-        public string Delete(int id)
+        [HttpPut("/password/{id}")]
+        public IActionResult UpdatePassword(int id, [FromBody] UpdatePasswordDTO updatePasswordDTO)
         {
-            return null;
+            User user = _Context.Users.Find(id);
+            string OldPassword = user.Password;
+            if (!OldPassword.Equals(Password(updatePasswordDTO.OldPassword)))
+            {
+                return Ok(new { error = "Old Password Not Matched" });
+            }
+            user.Password = updatePasswordDTO.NewPassword;
+            _Context.SaveChanges();
+            return Ok("Password Updated");
         }
-       
-        [HttpGet("/password")]
-        public string Password()
+
+        [HttpDelete("{id}")]
+        public string DeactivateUser(int id)
         {
-            string eps = PasswordEncrypt.HashPassword("hello");
-            return eps;
+            User userToBeDeactivated = _Context.Users.Find(id);
+            userToBeDeactivated.IsActive = false;
+            _Context.SaveChanges();
+            return "User Is Deleted";
+        }
+
+
+        [HttpGet("/password")]
+        public string Password(string password)
+        {
+            string EncryptedPassword = PasswordEncrypt.HashPassword(password);
+            return EncryptedPassword;
         }
     }
 }
