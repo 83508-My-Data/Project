@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TaskManager.DTO;
 using TaskManager.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -31,8 +32,14 @@ namespace TaskManager.Controllers
 
         // POST api/<NotificationController>
         [HttpPost]
-        public string AddNotification([FromBody] Notification notification)
+        public string AddNotification([FromBody] NotificationDTO notificationdto)
         {
+            Notification notification = new Notification();
+            notification.NotificationText = notificationdto.Notification;
+            notification.Status = false;
+            notification.UserFrom = _context.Users.Find(notificationdto.UserIdFrom);
+            notification.UserTo = _context.Users.Find(notificationdto.UserIdFrom);
+            notification.CreatedOn = DateTime.Now;
             _context.Notifications.Add(notification);
             _context.SaveChanges();
             return "Succesfully Added";

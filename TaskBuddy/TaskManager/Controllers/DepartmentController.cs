@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TaskManager.DTO;
 using TaskManager.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -17,12 +20,40 @@ namespace TaskManager.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Department> Get()
+        /* public IEnumerable<Department> Get()
+         {
+             return _Context.Departments.ToList();
+         }*/
+
+        public IEnumerable<string> Get()
         {
-            return _Context.Departments.ToList();
+            List<string> list = new List<string>();
+
+            foreach(var Dept in _Context.Departments)
+            {
+                if (Dept.IsValid)
+                {
+                    list.Add(Dept.DepartmentName);
+                }
+
+            }
+            return list;
+
+                           /*.Where(d => d.IsValid)
+                           .Select(d => new DepartmentDto
+                           {
+                               DepartmentName = d.DepartmentName
+                           })
+                           .ToList();*/ 
         }
 
-        
+
+        /*[HttpGet("{id}")]
+        public Department Get(int id)
+        {
+            return _Context.Departments.Find(id);
+        }*/
+
         [HttpGet("{id}")]
         public Department Get(int id)
         {
@@ -30,20 +61,28 @@ namespace TaskManager.Controllers
         }
 
         [HttpPost]
-        public string Add([FromBody] Department department)
+        public IActionResult Add([FromBody] DepartmentDto departmentDto)
         {
+            Department department = new Department();
+            department.DepartmentName = departmentDto.DepartmentName;
+            department.Description = departmentDto.Description;
+            department.IsValid = true;
             _Context.Departments.Add(department);
             _Context.SaveChanges();
-            return "Successfully Department Added";
+            return Ok("Department Added Successfully");
         }
 
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public ActionResult<string> Delete(int id)
         {
-            Department departmentToBeDeleted=_Context.Departments.Find(id);
-            _Context.Departments.Remove(departmentToBeDeleted);
+            Department departmentToBeDeleted = _Context.Departments.Find(id);
+            if (!departmentToBeDeleted.IsValid)
+            {
+                return Ok("Already Deleted");
+            }
+            departmentToBeDeleted.IsValid = false;
             _Context.SaveChanges();
-            return "Department Deleted";
+            return Ok("Department Deleted");
         }
     }
 }

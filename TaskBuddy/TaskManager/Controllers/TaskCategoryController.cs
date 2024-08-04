@@ -28,7 +28,6 @@ namespace TaskManager.Controllers
 
         
         [HttpPost]
-
         public string Post([FromBody] TaskCategory taskCategory) {
 
             _Context.TaskCategories.Add(taskCategory);

@@ -273,3 +273,4 @@ E:\Balle\Project\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\scopedcss\bundle
 E:\Balle\Project\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.csproj.CopyComplete
 E:\Balle\Project\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.genruntimeconfig.cache
 E:\Balle\Project\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\ref\TaskManager.dll
+C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
