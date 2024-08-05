@@ -22,17 +22,11 @@ namespace TaskManager.Controllers
             _context = context;
         }
 
-
-
         // GET: api/<ProjectController>
-        /* public IEnumerable<Project> Get()
-         {
-             return _context.Projects.ToList();
-         }*/
         [HttpGet]
         public ActionResult<IEnumerable<ProjectDto1>> Get()
         {
-            List<ProjectDto1> list = new List<ProjectDto1>();
+            var list = new List<ProjectDto1>();
 
             foreach (var proj in _context.Projects)
             {
@@ -44,8 +38,7 @@ namespace TaskManager.Controllers
                         ProjectTitle = proj.ProjectTitle,
                         StartDate = proj.StartDate,
                         EndDate = proj.EndDate,
-                        ManagerId = proj.ManagerId
-
+                        ManagerName = $"{proj.manager.FirstName} {proj.manager.LastName}"
                     });
                 }
             }
@@ -54,32 +47,23 @@ namespace TaskManager.Controllers
         }
 
 
+
         // GET api/<ProjectController>/5
         [HttpGet("{id}")]
-        /* public Project Get(int id)
-         {
-             return _context.Projects.Find(id);
-         }*/
-        public ActionResult<ProjectDto1> Get(int id)
+        public ProjectDto1 projectDto1(int id)
         {
-            var project = _context.Projects
-                                     .Where(d => d.IsValid && d.Id == id)
-                                     .Select(d => new ProjectDto1
-                                     {
-                                         Id = d.Id,
-                                         ProjectTitle = d.ProjectTitle,
-                                         StartDate = d.StartDate,
-                                         EndDate = d.EndDate,
-                                         ManagerId = d.ManagerId
-                                     })
-                                     .FirstOrDefault();
-
-            if (project == null)
+            Project project = _context.Projects.Find(id);
+            if(project!=null && project.IsValid)
             {
-                return NotFound();
+                ProjectDto1 projectdto = new ProjectDto1();
+                projectdto.Id = id;
+                projectdto.ProjectTitle = project.ProjectTitle;
+                projectdto.StartDate = project.StartDate;
+                projectdto.EndDate = project.EndDate;
+                projectdto.ManagerName =_context.Users.Find(project.ManagerId).FirstName + " " + _context.Users.Find(project.ManagerId).LastName;
+                return projectdto;
             }
-
-            return Ok(project);
+            return null;
         }
 
 
