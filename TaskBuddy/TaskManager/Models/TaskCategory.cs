@@ -6,15 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TaskManager.Models
 {
 
-    [Table(name: "TaskCategorys")]
+    [Table("TaskCategorys")]
     public class TaskCategory
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(name: "TaskCategory_Id")]
+        [Column("TaskCategory_Id")]
         public int TaskCategoryId { get; set; }
 
-        [Column(name: "Task_Name", TypeName = "varchar")]
+        [Column("Task_Name", TypeName = "varchar")]
         [StringLength(30)]
         public string TaskName { get; set; }
     }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
+    "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
+    "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "packagesPath": "C:\\Users\\subha\\.nuget\\packages\\",
-        "outputPath": "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\obj\\",
+        "outputPath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\subha\\AppData\\Roaming\\NuGet\\NuGet.Config",

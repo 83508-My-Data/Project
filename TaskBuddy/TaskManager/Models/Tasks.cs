@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TaskManager.Models
 {
     [Table("Tasks")]
-    public class Task
+    public class Tasks
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -52,7 +52,7 @@ namespace TaskManager.Models
         [ForeignKey("UserId")]
         public virtual User CurrentUser { get; set; }
 
-        [Column(name: "Comment", TypeName = "varchar")]
+        [Column("Comment", TypeName = "varchar")]
         [StringLength(300)]
         public string Comment { get; set; }
     }

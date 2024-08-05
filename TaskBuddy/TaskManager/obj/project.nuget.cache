@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GNg9F7bpXta8AOTBy5veyhbetvtXeWhOUPOS2svAC9Wo3VPhid1wfNPYffOqO4rrU3apLWII3MlMW1WphoxMUg==",
+  "dgSpecHash": "rhyPEExav4Fdu1KeltTRhcT0Gh5pmgQMFzBF7JrMoeybNFMy+6uT2JlZldD6rksElnytLIne9tEpyV2cqpxPBQ==",
   "success": true,
-  "projectFilePath": "C:\\83508-My-Data\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+  "projectFilePath": "C:\\83508-My-Data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\subha\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\subha\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

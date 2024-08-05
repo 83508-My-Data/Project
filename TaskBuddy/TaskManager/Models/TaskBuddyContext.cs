@@ -14,7 +14,7 @@ namespace TaskManager.Models
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Tasks> Task { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Department> Departments { get; set; }
 

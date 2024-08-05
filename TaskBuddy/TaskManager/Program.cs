@@ -3,6 +3,8 @@ using TaskManager.Models;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Proxies;
+
 namespace TaskManager
 {
     public class Program
@@ -37,7 +39,7 @@ namespace TaskManager
                 });
             });
 
-            builder.Services.AddDbContext<TaskBuddyContext>((options) => { options.UseSqlServer("name=mycon"); });
+            builder.Services.AddDbContext<TaskBuddyContext>((options) => { options.UseLazyLoadingProxies(); options.UseSqlServer("name=mycon"); });
 
             //var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
             //var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
