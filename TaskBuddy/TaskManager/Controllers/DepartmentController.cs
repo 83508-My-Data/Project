@@ -12,11 +12,11 @@ namespace TaskManager.Controllers
     [ApiController]
     public class DepartmentController : ControllerBase
     {
-        TaskBuddyContext _Context =null;
+        TaskBuddyContext _Context = null;
 
         public DepartmentController(TaskBuddyContext context)
         {
-            _Context = context;    
+            _Context = context;
         }
 
         [HttpGet]
@@ -25,26 +25,31 @@ namespace TaskManager.Controllers
              return _Context.Departments.ToList();
          }*/
 
-        public IEnumerable<string> Get()
+        public IEnumerable<DepartmentDto1> Get()
         {
-            List<string> list = new List<string>();
-
-            foreach(var Dept in _Context.Departments)
+            List<DepartmentDto1> list = new List<DepartmentDto1>();
+            foreach (var Dept in _Context.Departments)
             {
                 if (Dept.IsValid)
                 {
-                    list.Add(Dept.DepartmentName);
+                    list.Add(new DepartmentDto1
+                    {
+                        DepartmentId = Dept.DepartmentId,
+                        DepartmentName = Dept.DepartmentName,
+                        Description = Dept.Description
+                    });
                 }
-
             }
+
             return list;
 
-                           /*.Where(d => d.IsValid)
-                           .Select(d => new DepartmentDto
-                           {
-                               DepartmentName = d.DepartmentName
-                           })
-                           .ToList();*/ 
+
+            /*.Where(d => d.IsValid)
+            .Select(d => new DepartmentDto
+            {
+                DepartmentName = d.DepartmentName
+            })
+            .ToList();*/
         }
 
 
@@ -55,13 +60,15 @@ namespace TaskManager.Controllers
         }*/
 
         [HttpGet("{id}")]
-        public ActionResult<DepartmentDto> Get(int id)
+        public ActionResult<DepartmentDto1> Get(int id)
         {
             var department = _Context.Departments
                                      .Where(d => d.IsValid && d.DepartmentId == id)
-                                     .Select(d => new DepartmentDto
+                                     .Select(d => new DepartmentDto1
                                      {
-                                         DepartmentName = d.DepartmentName
+                                         DepartmentId = d.DepartmentId,
+                                         DepartmentName = d.DepartmentName,
+                                         Description = d.Description
                                      })
                                      .FirstOrDefault();
 
@@ -76,7 +83,7 @@ namespace TaskManager.Controllers
         [HttpPost]
         public IActionResult Add([FromBody] Department department)
         {
-            department.DepartmentId = 0;
+            //department.DepartmentId = 0;
             department.IsValid = true;
             _Context.Departments.Add(department);
             _Context.SaveChanges();
@@ -94,6 +101,13 @@ namespace TaskManager.Controllers
             departmentToBeDeleted.IsValid = false;
             _Context.SaveChanges();
             return Ok("Department Deleted");
+        }
+
+        public class DepartmentDto1
+        {
+            public int DepartmentId { get; internal set; }
+            public string DepartmentName { get; internal set; }
+            public string Description { get; internal set; }
         }
     }
 }
