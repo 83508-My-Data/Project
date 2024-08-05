@@ -687,3 +687,6 @@ D:\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\refint\TaskManager.dll
 D:\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.pdb
 D:\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.genruntimeconfig.cache
 D:\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\ref\TaskManager.dll
+C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
+C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll

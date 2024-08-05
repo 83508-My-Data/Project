@@ -3,25 +3,28 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManager.Models
 {
-    [Table(name: "Password_History")]
+    [Table("Password_History")]
     public class PasswordHistory
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(name: "Password_Id")]
+        [Column("Password_Id")]
         public int PasswordId { get; set; }
 
-        [ForeignKey("User_Id")]
-        public User CurrentUser { get; set; }
+        [Column("User_Id", TypeName = "int")]
+        public int UserId { get; set; }
 
-        [Column(name: "Updated_On", TypeName = "datetime")]
+        [ForeignKey("UserId")]
+        public virtual User CurrentUser { get; set; }
+
+        [Column("Updated_On", TypeName = "datetime")]
         public DateTime UpdatedOn { get; set; }
 
-        [Column(name: "Old_Password", TypeName = "varchar")]
+        [Column("Old_Password", TypeName = "varchar")]
         [StringLength(50)]
         public string OldPassword { get; set; }
 
-        [Column(name: "New_Password", TypeName = "varchar")]
+        [Column("New_Password", TypeName = "varchar")]
         [StringLength(50)]
         public string NewPassword { get; set; }
 

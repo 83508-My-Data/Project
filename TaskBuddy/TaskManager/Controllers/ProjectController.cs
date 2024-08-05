@@ -24,25 +24,23 @@ namespace TaskManager.Controllers
 
         // GET: api/<ProjectController>
         [HttpGet]
-        public ActionResult<IEnumerable<ProjectDto1>> Get()
+        public ActionResult<IEnumerable<ProjectDto>> Get()
         {
-            var list = new List<ProjectDto1>();
+            var list = new List<ProjectDto>();
 
-            foreach (var proj in _context.Projects)
+            foreach (var project in _context.Projects.ToList())
             {
-                if (proj.IsValid)
+                if (project.IsValid)
                 {
-                    list.Add(new ProjectDto1
-                    {
-                        Id = proj.Id,
-                        ProjectTitle = proj.ProjectTitle,
-                        StartDate = proj.StartDate,
-                        EndDate = proj.EndDate,
-                        ManagerName = $"{proj.manager.FirstName} {proj.manager.LastName}"
-                    });
+                    ProjectDto projectdto = new ProjectDto();
+                    projectdto.Id = project.Id;
+                    projectdto.ProjectTitle = project.ProjectTitle;
+                    projectdto.StartDate = project.StartDate;
+                    projectdto.EndDate = project.EndDate;
+                    projectdto.ManagerName = project.manager.FirstName + " " + project.manager.LastName;
+                    list.Add(projectdto);
                 }
             }
-
             return Ok(list);
         }
 
@@ -60,10 +58,10 @@ namespace TaskManager.Controllers
                 projectdto.ProjectTitle = project.ProjectTitle;
                 projectdto.StartDate = project.StartDate;
                 projectdto.EndDate = project.EndDate;
-                projectdto.ManagerName =_context.Users.Find(project.ManagerId).FirstName + " " + _context.Users.Find(project.ManagerId).LastName;
+                projectdto.ManagerName = project.manager.FirstName + " " + project.manager.LastName;
                 return projectdto;
             }
-            return null;
+            return null;  
         }
 
 
@@ -71,10 +69,14 @@ namespace TaskManager.Controllers
 
         // POST api/<ProjectController>
         [HttpPost]
-        public IActionResult Post([FromBody] Project project)
+        public IActionResult Post([FromBody] ProjectAddDto projectDto)
         {
+            Project project = new Project();
             project.IsValid = true;
-
+            project.ProjectTitle = projectDto.ProjectTitle;
+            project.StartDate = projectDto.StartDate;
+            project.EndDate = projectDto.EndDate;
+            project.manager = _context.Users.Find(projectDto.ManagerId);
             _context.Projects.Add(project);
             _context.SaveChanges();
             return Ok("Department Added Successfully");

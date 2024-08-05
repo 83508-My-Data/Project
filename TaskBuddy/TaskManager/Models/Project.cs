@@ -24,7 +24,7 @@ namespace TaskManager.Models
         public int ManagerId { get; set; }
         
         [ForeignKey("ManagerId")]
-        public User manager { get; set; }
+        public virtual User manager { get; set; }
         public bool IsValid { get; set; }
 
     }

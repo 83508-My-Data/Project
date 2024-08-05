@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TaskManager.Models
 {
 
-    [Table(name: "TaskCategory")]
+    [Table(name: "TaskCategorys")]
     public class TaskCategory
     {
         [Key]

@@ -3,45 +3,54 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskManager.Models
 {
-    [Table(name: "Tasks")]
+    [Table("Tasks")]
     public class Task
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(name: "Task_Id")]
+        [Column("Task_Id")]
         public int TaskId { get; set; }
 
-        [Column(name: "Title", TypeName = "varchar")]
+        [Column("Title", TypeName = "varchar")]
         [StringLength(30)]
         public string Title { get; set; }
 
-        [Column(name: "Description", TypeName = "text")]
+        [Column("Description", TypeName = "text")]
         public string Description { get; set; }
 
-        [Column(name: "Attachment", TypeName = "varchar")]
+        [Column("Attachment", TypeName = "varchar")]
         [StringLength(500)]
         public string AttachmentPath { get; set; }
 
-        [Column(name: "Status", TypeName = "tinyint")]
+        [Column("Status", TypeName = "tinyint")]
         public bool Status { get; set; }
 
-        [Column(name: "Upload_At", TypeName = "datetime")]
+        [Column("Upload_At", TypeName = "datetime")]
         public DateTime UploadAt { get; set; }
 
-        [Column(name: "Update_At", TypeName = "datetime")]
+        [Column("Update_At", TypeName = "datetime")]
         public DateTime UpdateAt { get; set; }
 
-        [Column(name: "Priority", TypeName = "int")]
+        [Column("Priority", TypeName = "int")]
         public int Priority { get; set; }
 
+        [Column("TaskCategory_Id", TypeName = "int")]
+        public int TaskCategoryId { get; set; }
+
         [ForeignKey("TaskCategory_Id")]
-        public TaskCategory Category { get; set; }
+        public virtual TaskCategory Category { get; set; }
 
-        [ForeignKey("Project_Id")]
-        public Project WorkingProject { get; set; }
+        [Column("Project_Id", TypeName = "int")]
+        public int ProjectId { get; set; }
 
-        [ForeignKey("User_Id")]
-        public User CurrentUser { get; set; }
+        [ForeignKey("ProjectId")]
+        public virtual Project WorkingProject { get; set; }
+
+        [Column("User_Id", TypeName = "int")]
+        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual User CurrentUser { get; set; }
 
         [Column(name: "Comment", TypeName = "varchar")]
         [StringLength(300)]

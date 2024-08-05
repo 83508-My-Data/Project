@@ -9,8 +9,7 @@ namespace TaskManager.DTO
         public string ProjectTitle { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public virtual string ManagerName { get; set; }
-        public string IsValid { get; set; }
+        public string ManagerName { get; set; }
 
     }
 }

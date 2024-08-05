@@ -20,10 +20,16 @@ namespace TaskManager.Models
         [Column("Created_On", TypeName = "datetime")]
         public DateTime CreatedOn { get; set; }
 
-        [ForeignKey("User_Id_From")]
-        public User UserFrom { get; set; }
+        [Column("User_Id_From", TypeName = "int")]
+        public int UserIdFrom { get; set; }
 
-        [ForeignKey("User_Id_To")]
-        public User UserTo { get; set; }
+        [ForeignKey("UserIdFrom")]
+        public virtual User UserFrom { get; set; }
+
+        [Column("User_Id_To", TypeName = "int")]
+        public int UserIdTo { get; set; }
+
+        [ForeignKey("UserIdTo")]
+        public virtual User UserTo { get; set; }
     }
 }

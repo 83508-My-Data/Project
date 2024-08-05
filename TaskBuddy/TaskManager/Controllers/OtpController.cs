@@ -30,7 +30,7 @@ namespace TaskManager.Controllers
         [HttpGet("{id}")]
         public Otp Get(int id)
         {
-            return _Context.
+            return _Context.Otps.Find(id);
         }
 
         // POST api/<OtpController>
