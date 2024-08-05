@@ -12,15 +12,29 @@ namespace TaskManager.Controllers
     {
         TaskBuddyContext _context =null;
 
+        public string Notification { get; private set; }
+
         public NotificationController( TaskBuddyContext context)
         {
             _context = context;
         }
 
+
         [HttpGet]
-        public IEnumerable<NotificationDTO> GetAll()
+        public IEnumerable<NotificationDTO> Get()
         {
-            return (IEnumerable<NotificationDTO>)_context.Notifications.ToList();
+            List<NotificationDTO> result = new List<NotificationDTO>();
+            foreach (var notification in _context.Notifications)
+            {
+                NotificationDTO dto = new NotificationDTO
+                {
+                    Notification = notification.NotificationText
+                };
+
+                result.Add(dto);
+            }
+
+            return result;
         }
 
         // GET api/<NotificationController>/5
