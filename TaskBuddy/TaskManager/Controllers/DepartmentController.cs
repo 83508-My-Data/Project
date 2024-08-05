@@ -42,14 +42,6 @@ namespace TaskManager.Controllers
             }
 
             return list;
-
-
-            /*.Where(d => d.IsValid)
-            .Select(d => new DepartmentDto
-            {
-                DepartmentName = d.DepartmentName
-            })
-            .ToList();*/
         }
 
 

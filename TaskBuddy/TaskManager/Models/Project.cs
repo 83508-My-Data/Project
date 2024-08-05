@@ -20,7 +20,12 @@ namespace TaskManager.Models
         [Column("End_Date", TypeName = "datetime")]
         public DateTime EndDate { get; set; }
 
-        [ForeignKey("Manager_Id")]
-        public User ManagerId { get; set; }
+        [Column("Manager_Id", TypeName ="int")]
+        public int ManagerId { get; set; }
+        
+        [ForeignKey("ManagerId")]
+        public User manager { get; set; }
+        public bool IsValid { get; set; }
+
     }
 }
