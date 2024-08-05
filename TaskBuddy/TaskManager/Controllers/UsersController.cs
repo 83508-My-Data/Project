@@ -51,7 +51,7 @@ namespace TaskBuddy.Controllers
             //}
             //return "invalid login credential";
             //FirstOrDefault =  when there is no match found it returns null
-            var user = _Context.Users.Where(u => u.Email.Equals(loginUser.Email) && u.Password.Equals(Password(loginUser.Password))).FirstOrDefault();
+            var user = _Context.Users.Where(u => u.Email.Equals(loginUser.Email) && u.Password.Equals(PasswordEncrypt.HashPassword(loginUser.Password))).FirstOrDefault();
             if (user != null)
             {
 
@@ -82,7 +82,7 @@ namespace TaskBuddy.Controllers
             user.FirstName = registrationDto.FirstName;
             user.LastName = registrationDto.LastName;
             user.Email = registrationDto.Email;
-            user.Password = Password(registrationDto.Password);
+            user.Password = PasswordEncrypt.HashPassword(registrationDto.Password);
             user.MobileNo = registrationDto.MobileNo;
             user.Address = registrationDto.Address;
             user.role = _Context.Roles.Find(registrationDto.RoleId);
@@ -115,7 +115,7 @@ namespace TaskBuddy.Controllers
         public IActionResult UpdatePassword( int id, [FromBody] UpdatePasswordDTO updatePasswordDTO )
         {
             string OldPassword = _Context.Users.Find(id).Password;
-            if(!OldPassword.Equals(Password(updatePasswordDTO.OldPassword)) )
+            if(!OldPassword.Equals(PasswordEncrypt.HashPassword(updatePasswordDTO.OldPassword)) )
             {
                 return Ok(new { error = "Old Password Not Matched" });
             }
@@ -129,12 +129,6 @@ namespace TaskBuddy.Controllers
             userToBeDeactivated.IsActive = false;
             _Context.SaveChanges();
             return "User Is Deleted";
-        }
-       
-        public string Password(string password)
-        {
-            string EncryptedPassword = PasswordEncrypt.HashPassword(password);
-            return EncryptedPassword;
         }
     }
 }

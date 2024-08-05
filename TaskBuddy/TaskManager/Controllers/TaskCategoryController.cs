@@ -4,6 +4,8 @@ using TaskManager.Models;
 
 namespace TaskManager.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class TaskCategoryController : ControllerBase
     {
         private TaskBuddyContext _Context = null;

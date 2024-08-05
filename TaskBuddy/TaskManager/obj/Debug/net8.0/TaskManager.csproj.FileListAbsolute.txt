@@ -548,3 +548,4 @@ C:\Users\subha\OneDrive\Desktop\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\s
 C:\Users\subha\OneDrive\Desktop\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.csproj.CopyComplete
 C:\Users\subha\OneDrive\Desktop\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.genruntimeconfig.cache
 C:\Users\subha\OneDrive\Desktop\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\ref\TaskManager.dll
+C:\Users\subha\OneDrive\Desktop\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\TaskManager.sourcelink.json
