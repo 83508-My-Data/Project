@@ -1,0 +1,12 @@
+.dashboard-container {
+    display: flex;
+}
+
+.sidebar {
+    width: 16.66%; /* 2/12 columns */
+}
+
+.content {
+    flex: 1; /* Takes the remaining space */
+    margin-top: 300px;
+}
