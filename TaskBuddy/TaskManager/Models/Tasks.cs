@@ -55,5 +55,6 @@ namespace TaskManager.Models
         [Column("Comment", TypeName = "varchar")]
         [StringLength(300)]
         public string Comment { get; set; }
+        public bool IsValid { get; set; }
     }
 }
