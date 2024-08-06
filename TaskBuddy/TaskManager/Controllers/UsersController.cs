@@ -38,24 +38,11 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpPost("/login")]
-        public IActionResult Login([FromBody] Login loginUser)
+        public ApiResponse<LoginResponseDto> Login([FromBody] Login loginUser)
         {
-            //UserDto u =null;
-            //foreach (var user in _Context.Users) 
-            //{ 
-            //    if(user.Email.Equals(loginUser.Email) && user.Password.Equals(loginUser.Password))
-            //    {
-            //        return "successfully loggedIn";
-
-            //    }
-            //}
-            //return "invalid login credential";
-            //FirstOrDefault =  when there is no match found it returns null
             var user = _Context.Users.Where(u => u.Email.Equals(loginUser.Email) && u.Password.Equals(PasswordEncrypt.HashPassword(loginUser.Password))).FirstOrDefault();
             if (user != null)
             {
-
-
                 var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
                 var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
@@ -64,19 +51,18 @@ namespace TaskBuddy.Controllers
                   null,
                   expires: DateTime.Now.AddMinutes(120),
                   signingCredentials: credentials);
+                var generatedtoken = new JwtSecurityTokenHandler().WriteToken(Sectoken);
 
-                var token = new JwtSecurityTokenHandler().WriteToken(Sectoken);
-
-                return Ok(new { name = "user1", token });
+                return new ApiResponse<LoginResponseDto> { status = true , Msg = user.FirstName +" "+ user.LastName+" "+"Logged In" , result = new LoginResponseDto { role = user.role, token = generatedtoken } };
             }
             else
             {
-                return Ok(new { error = "Invalid Username or Password" });
+                return new ApiResponse<LoginResponseDto> { status = false, Msg = "Invalid Credentials",result = null };
             }
         }
 
         [HttpPost("/register")]
-        public IActionResult RegisterUser([FromBody] RegistrationDto registrationDto) 
+        public ApiResponse<string> RegisterUser([FromBody] RegistrationDto registrationDto) 
         { 
             User user = new User();
             user.FirstName = registrationDto.FirstName;
@@ -91,9 +77,25 @@ namespace TaskBuddy.Controllers
             user.UpdatedAt = DateTime.Now;
             user.IsActive = true;
             user.DOB = registrationDto.DOB;
+            foreach (var emp in _Context.Users)
+            {
+                if (emp.Email.Equals(user.Email) && emp.MobileNo.Equals(user.MobileNo))
+                {
+                    return new ApiResponse<string> { status = false, Msg = "Email and Mobile Number Already Registered", result = "Register Again" };
+                }
+                else if (emp.Email.Equals(user.Email))
+                {
+                    return new ApiResponse<string> { status = false, Msg = "Email Already Registered", result = "Register Again" };
+                }
+                else if (emp.MobileNo.Equals(user.MobileNo))
+                {
+                    return new ApiResponse<string> { status = false, Msg = "Mobile Already Registered", result = "Register Again" };
+                }
+                
+            }
             _Context.Users.Add(user);
             _Context.SaveChanges();
-            return Created();
+            return new ApiResponse<string> { status = true, Msg = "Successfully Added", result = "Created"};
         }
 
         [HttpPut("{id}")]
