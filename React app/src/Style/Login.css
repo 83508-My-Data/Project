@@ -1,0 +1,16 @@
+
+
+.wide-input {
+    width: 100%; 
+    max-width: 300px; 
+}
+  .Login-Box {
+    border: 2px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 20px;
+    margin: 20px auto; 
+    max-width: 500px; 
+    background-color: #fff; 
+  }
+  
