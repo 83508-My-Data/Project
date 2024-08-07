@@ -37,7 +37,7 @@ namespace TaskManager.Models
         [Column("TaskCategory_Id", TypeName = "int")]
         public int TaskCategoryId { get; set; }
 
-        [ForeignKey("TaskCategory_Id")]
+        [ForeignKey("TaskCategoryId")]
         public virtual TaskCategory Category { get; set; }
 
         [Column("Project_Id", TypeName = "int")]
