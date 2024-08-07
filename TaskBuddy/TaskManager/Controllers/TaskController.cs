@@ -37,7 +37,7 @@ namespace TaskManager.Controllers
         }
 
         [HttpPost("/addtask")]
-        public async Task<IActionResult> Post([FromForm] TaskFormData formData)
+        public IActionResult Post([FromForm] TaskFormData formData)
         {
             if (formData.Attachment != null && formData.Attachment.Length > 0)
             {
@@ -45,16 +45,17 @@ namespace TaskManager.Controllers
                 var filePath = Path.Combine("Upload\\Files\\", formData.Attachment.FileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
-                    await formData.Attachment.CopyToAsync(stream);
+                    formData.Attachment.CopyToAsync(stream);
                 }
             }
 
             var taskDto = formData.TaskDto;
+             
             var task = new Tasks
             {
                 Title = taskDto.Title,
                 Description = taskDto.Description,
-                Status = taskDto.Status,
+                Status = false,
                 Comment = taskDto.Comment,
                 Priority = taskDto.Priority,
                 AttachmentPath = formData.Attachment?.FileName,
@@ -66,7 +67,7 @@ namespace TaskManager.Controllers
             };
 
             _Context.Add(task);
-            await _Context.SaveChangesAsync();
+            _Context.SaveChanges();
             return Ok("Created successfully");
         }
         // PUT api/<TaskController>/5

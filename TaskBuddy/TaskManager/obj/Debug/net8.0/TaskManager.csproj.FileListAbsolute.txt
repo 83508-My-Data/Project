@@ -690,3 +690,5 @@ D:\Project\TaskBuddy\TaskManager\obj\Debug\net8.0\ref\TaskManager.dll
 C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
 C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
+E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
+E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
