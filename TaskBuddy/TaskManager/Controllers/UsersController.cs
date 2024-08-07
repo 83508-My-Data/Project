@@ -116,11 +116,14 @@ namespace TaskBuddy.Controllers
         [HttpPut("/password/{id}")]
         public IActionResult UpdatePassword( int id, [FromBody] UpdatePasswordDTO updatePasswordDTO )
         {
-            string OldPassword = _Context.Users.Find(id).Password;
-            if(!OldPassword.Equals(PasswordEncrypt.HashPassword(updatePasswordDTO.OldPassword)) )
+            User user = _Context.Users.Find(id);
+            string OldPassword = user.Password;
+            if (!OldPassword.Equals(PasswordEncrypt.HashPassword(updatePasswordDTO.OldPassword)))
             {
                 return Ok(new { error = "Old Password Not Matched" });
             }
+            user.Password = PasswordEncrypt.HashPassword(updatePasswordDTO.NewPassword);
+            _Context.SaveChanges();
             return Ok("Password Updated");
         }
 
