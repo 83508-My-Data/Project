@@ -1,13 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using TaskManager.Models;
 
 
 namespace TaskManager.Controllers
 {
-
+    
     [Route("api/[controller]")]
     [ApiController]
+    
     public class TaskController : ControllerBase
     {
 
@@ -21,18 +23,34 @@ namespace TaskManager.Controllers
         }
         // GET: api/<TaskController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Tasks> Get()
         {
-            return new string[] { "value1", "value2" };
+            return _Context.TaskList.ToList();
+        }
+        [HttpGet("/pendingtask")]
+        public IEnumerable<Tasks> GetPendingTask()
+        {
+            var task= (from Tasks in _Context.TaskList
+                       where Tasks.Status == false
+                       select Tasks).ToList<Tasks>();
+            return task;
+        }
+        [HttpGet("/completedtask")]
+        public IEnumerable<Tasks> GetCompletedTask()
+        {
+            var task = (from Tasks in _Context.TaskList
+                        where Tasks.Status == true
+                        select Tasks).ToList<Tasks>();
+            return task;
         }
 
         // GET api/<TaskController>/5
         [HttpGet("{userid}")]
         public IEnumerable<Tasks> Get(int userid)
-        { 
+        {
             var task = (from Tasks in _Context.TaskList
-                      where Tasks.UserId == userid
-                      select Tasks).ToList<Tasks>();
+                        where Tasks.UserId == userid
+                        select Tasks).ToList<Tasks>();
             return task;
         }
 
@@ -41,7 +59,7 @@ namespace TaskManager.Controllers
         {
             if (formData.Attachment != null && formData.Attachment.Length > 0)
             {
-                
+
                 var filePath = Path.Combine("Upload\\Files\\", formData.Attachment.FileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
@@ -50,7 +68,7 @@ namespace TaskManager.Controllers
             }
 
             var taskDto = formData.TaskDto;
-             
+
             var task = new Tasks
             {
                 Title = taskDto.Title,
@@ -89,11 +107,12 @@ namespace TaskManager.Controllers
             _Context.SaveChanges();
             return Ok("task Deleted");
         }
-        [HttpGet]
-        [Route("DownloadFile")]
-        public async Task<IActionResult> DownloadFile(string filename)
+        [HttpGet("/DownloadFile/{id}")]
+      
+        public async Task<IActionResult> DownloadFile(int id)
         {
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+            var task = _Context.TaskList.Find(id);
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", task.AttachmentPath);
 
             var provider = new FileExtensionContentTypeProvider();
             if (!provider.TryGetContentType(filepath, out var contenttype))
@@ -104,5 +123,6 @@ namespace TaskManager.Controllers
             var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
             return File(bytes, contenttype, Path.GetFileName(filepath));
         }
+
     }
 }

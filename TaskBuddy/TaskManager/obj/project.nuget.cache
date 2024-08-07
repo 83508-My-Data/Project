@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JKFgv97w38+UixNhTwupAB1VNbTnKToTA3shNjwDYoaikhzuMvHTkftxznKVzMR4z+T13J1lONYbNC9iK63+qA==",
+  "dgSpecHash": "0XJDFLk0u6HdXvqjXrC/kPPjCcR8hvi5vdLeAmJtKefw4zc6wd3Rmi59o9dIKBuxwdL5mdlaTF4GPQan5y79eA==",
   "success": true,
   "projectFilePath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,7 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identity.client\\4.47.2\\microsoft.identity.client.4.47.2.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\2.19.3\\microsoft.identity.client.extensions.msal.2.19.3.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.0.0\\microsoft.identitymodel.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.0.0\\microsoft.identitymodel.jsonwebtokens.8.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.logging\\8.0.0\\microsoft.identitymodel.logging.8.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.protocols\\7.0.3\\microsoft.identitymodel.protocols.7.0.3.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\7.0.3\\microsoft.identitymodel.protocols.openidconnect.7.0.3.nupkg.sha512",
@@ -65,7 +65,7 @@
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.formats.asn1\\5.0.0\\system.formats.asn1.5.0.0.nupkg.sha512",
-    "C:\\Users\\LENOVO\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
+    "C:\\Users\\LENOVO\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.0\\system.identitymodel.tokens.jwt.8.0.0.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
     "C:\\Users\\LENOVO\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
