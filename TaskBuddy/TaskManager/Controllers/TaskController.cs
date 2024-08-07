@@ -2,14 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using TaskManager.Models;
-
+using TaskManager.Filters;
 
 namespace TaskManager.Controllers
 {
     
     [Route("api/[controller]")]
     [ApiController]
-    
+    [GlobalExceptionHandler]
     public class TaskController : ControllerBase
     {
 

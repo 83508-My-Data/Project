@@ -5,6 +5,7 @@ using TaskManager.DTO;
 using System.Collections.Generic;
 using System.Collections;
 using System.Reflection.Metadata.Ecma335;
+using TaskManager.Filters;
 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,6 +14,7 @@ namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [GlobalExceptionHandler]
     public class ProjectController : ControllerBase
     {
         private TaskBuddyContext _context = null;
