@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.DTO;
@@ -10,6 +11,7 @@ namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy ="RequireLoggedIn")]
     public class DepartmentController : ControllerBase
     {
         TaskBuddyContext _Context = null;
