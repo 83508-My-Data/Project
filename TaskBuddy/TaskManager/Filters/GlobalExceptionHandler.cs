@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace TaskManager.GlobalExceptionhandler
+namespace TaskManager.Filters
 {
     [AttributeUsage(AttributeTargets.All, Inherited = true)]
     public class GlobalExceptionHandler : Attribute, IExceptionFilter
