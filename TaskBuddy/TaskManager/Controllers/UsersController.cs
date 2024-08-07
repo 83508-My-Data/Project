@@ -6,6 +6,7 @@ using System.Text;
 using TaskManager.DTO;
 using TaskManager.ErrorLggers;
 using TaskManager.Models;
+using TaskManager.Filters;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,6 +14,7 @@ namespace TaskBuddy.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [GlobalExceptionHandler]
     // [EnableCors("policy")]
     public class UsersController : ControllerBase
     {

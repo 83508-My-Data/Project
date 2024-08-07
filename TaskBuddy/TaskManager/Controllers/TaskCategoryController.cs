@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Models;
+using TaskManager.Filters;
 
 namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [GlobalExceptionHandler]
     public class TaskCategoryController : ControllerBase
     {
         private TaskBuddyContext _Context = null;

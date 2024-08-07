@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManager.DTO;
+using TaskManager.Filters;
 using TaskManager.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,6 +13,7 @@ namespace TaskManager.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Policy ="RequireLoggedIn")]
+    [GlobalExceptionHandler]
     public class DepartmentController : ControllerBase
     {
         TaskBuddyContext _Context = null;

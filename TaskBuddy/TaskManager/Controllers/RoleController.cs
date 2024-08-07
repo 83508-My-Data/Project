@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManager.Models;
+using TaskManager.Filters;
 
 namespace TaskManager.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-
+    [GlobalExceptionHandler]
     public class RoleController : ControllerBase
     {
 
