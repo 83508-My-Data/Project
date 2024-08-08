@@ -4305,11 +4305,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "projectUniqueName": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "projectPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\TaskBuddy\\TaskManager\\obj\\",
+      "outputPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -6,5 +6,6 @@ namespace TaskManager.DTO
     {
         public string token { get; set; }
         public Role role { get; set; }
+        public int userId { get; set; }
     }
 }
