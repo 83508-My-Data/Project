@@ -56,5 +56,7 @@ namespace TaskManager.Models
         [StringLength(300)]
         public string Comment { get; set; }
         public bool IsValid { get; set; }
+
+        public DateTime Deadline { get; set; }
     }
 }
