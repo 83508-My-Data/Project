@@ -58,9 +58,13 @@ const Register = () => {
         var deptid = parseFloat(selectedDepartment)
         await register(firstName, lastName, email, password, dob, mobile, address, roleid, deptid);
         
-        
-          toast.success('Successfully registered a new user');
+        if(result.status){
+          toast.success(result.msg);
           navigate('/login'); 
+        }
+        else{
+          toast.error(result.msg);
+        }
         
     }
   };
