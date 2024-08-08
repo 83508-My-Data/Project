@@ -55,7 +55,7 @@ namespace TaskBuddy.Controllers
                   signingCredentials: credentials);
                 var generatedtoken = new JwtSecurityTokenHandler().WriteToken(Sectoken);
 
-                return new ApiResponse<LoginResponseDto> { status = true , Msg = user.FirstName +" "+ user.LastName+" "+"Logged In" , result = new LoginResponseDto { role = user.role, token = generatedtoken } };
+                return new ApiResponse<LoginResponseDto> { status = true , Msg = user.FirstName +" "+ user.LastName+" "+"Logged In" , result = new LoginResponseDto { role = user.role,userId=user.UserId, token = generatedtoken } };
             }
             else
             {
