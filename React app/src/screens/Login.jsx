@@ -24,7 +24,20 @@ const onLogin = async () => {
     
     const result = await login(email, password)
     console.log(result)
-    navigate('/Dashboard')
+    if(result.status){
+      if(result.result.role.roleName  == "Manager")
+      {
+        navigate('/Tasks')
+      }
+      else{
+        navigate('/Dashboard')
+      }
+      toast.success(result.msg)
+    }
+    else {
+      navigate('/Login')
+      toast.error(result.msg)
+    }
     // if (result['status'] == 'success') {
     //   const data = result['data']
 
