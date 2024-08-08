@@ -13,7 +13,7 @@ namespace TaskManager.ErrorLggers
 
         public void Log(string message)
         {
-            string Path = "e:\\Log\\Log.json";
+            string Path = "C:\\Log\\Log.json";
 
             var logEntry = new LogEntry
             {

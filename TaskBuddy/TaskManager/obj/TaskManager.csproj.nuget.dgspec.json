@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
+    "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {}
   },
   "projects": {
-    "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
+    "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectUniqueName": "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "projectName": "TaskManager",
-        "projectPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+        "projectPath": "D:\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
         "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
+        "outputPath": "D:\\Project\\TaskBuddy\\TaskManager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",

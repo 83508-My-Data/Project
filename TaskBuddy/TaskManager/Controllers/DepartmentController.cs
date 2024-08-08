@@ -12,7 +12,7 @@ namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy ="RequireLoggedIn")]
+    
     [GlobalExceptionHandler]
     public class DepartmentController : ControllerBase
     {
@@ -56,6 +56,7 @@ namespace TaskManager.Controllers
         }*/
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "RequireLoggedIn")]
         public ActionResult<DepartmentDto1> Get(int id)
         {
             var department = _Context.Departments
@@ -77,6 +78,7 @@ namespace TaskManager.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "RequireLoggedIn")]
         public IActionResult Add([FromBody] Department department)
         {
             //department.DepartmentId = 0;
@@ -87,6 +89,7 @@ namespace TaskManager.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "RequireLoggedIn")]
         public ActionResult<string> Delete(int id)
         {
             Department departmentToBeDeleted = _Context.Departments.Find(id);

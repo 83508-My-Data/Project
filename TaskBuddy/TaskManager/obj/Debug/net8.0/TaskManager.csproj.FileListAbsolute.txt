@@ -692,3 +692,5 @@ C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.AspNet
 C:\83508-My-Data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
 E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
 E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
+D:\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
+D:\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
