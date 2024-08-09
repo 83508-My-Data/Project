@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getProjById, updateProj } from '../Services/project';
 import Navbar1 from "../component/Navbar1";
 import Sidebarp from "../component/Sidebarp";
-import '../Style/EditProject.css'; // Import your custom CSS file
+import '../Style/EditProject.css'; 
 
 const EditProject = () => {
     const { id } = useParams(); 
