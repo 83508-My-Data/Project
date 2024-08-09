@@ -1,16 +1,18 @@
 import Navbar1 from "../component/Navbar1";
 import Sidebarp from '../component/Sidebarp';
-import {getProj }from '../Services/project';
+import { getProj } from '../Services/project';
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Style/Project.css';  
-
 
 function Project() {
     const [projects, setProjects] = useState([]);
+    const navigate = useNavigate(); // Hook for navigation
 
     const proj = async () => {
         try {
             const result = await getProj(1007);
+            console.log(result)
             setProjects(result);
         } catch (error) {
             console.error('Failed to fetch projects:', error);
@@ -18,7 +20,8 @@ function Project() {
     };
 
     const onEditDetails = (projectId) => {
-        
+        console.log(projectId)
+        navigate(`/editproject/${projectId}`);
     };
 
     useEffect(() => {
@@ -27,7 +30,6 @@ function Project() {
 
     return (
         <div className="container-fluid">
-         
             <Navbar1 />
             <div className="row">
                 <div className="col-2">
@@ -54,11 +56,11 @@ function Project() {
                                         <td>{index + 1}</td>
                                         <td>{project.projectTitle}</td>
                                         <td>{project.startDate}</td>
-                                        <td></td>
+                                        <td>{project.endDate}</td>
                                         <td>
                                             <button 
                                                 className='btn btn-warning btn-sm'
-                                                onClick={() => onEditDetails(project.projectId)}
+                                                onClick={() => onEditDetails(project.id)}
                                             >
                                                 Edit
                                             </button>
