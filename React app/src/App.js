@@ -2,7 +2,7 @@
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Login from './screens/Login'
-
+import Notification from './screens/Notification'
 import Dashboard from './screens/Dashboard';
 
 import Tasks from './screens/Tasks';
@@ -18,7 +18,7 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/register' element={<Register></Register>} />
       <Route path='/tasks' element={<Tasks/>} />
-     
+      <Route path='/notification' element={<Notification />} />
         
       </Routes>
       <ToastContainer />

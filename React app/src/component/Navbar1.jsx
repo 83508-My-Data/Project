@@ -31,6 +31,15 @@ function Navbar1() {
                 className='nav-link'
                 aria-current='page'
               >
+              <b><u>Notification</u></b>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/notification'
+                className='nav-link'
+                aria-current='page'
+              >
                 <b><u>About</u></b>
               </Link>
             </li>

@@ -26,7 +26,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/profile'
+                to='/home'
                 className='nav-link'
                 aria-current='page'
               >
