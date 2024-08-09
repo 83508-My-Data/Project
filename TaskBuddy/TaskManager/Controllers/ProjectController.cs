@@ -87,13 +87,13 @@ namespace TaskManager.Controllers
 
         // PUT api/<ProjectController>/5
         [HttpPut("{id}")]
-        public string Put(int id, [FromBody] Project projectUpdated)
+        public string Put(int id, [FromBody] EditProjectDto projectUpdated)
         {
             Project projectToUpdate = _context.Projects.Find(id);
-            projectUpdated.ProjectTitle = projectUpdated.ProjectTitle;
-            projectUpdated.StartDate = projectUpdated.StartDate;
-            projectUpdated.EndDate = projectUpdated.EndDate;
-            projectUpdated.ManagerId = projectUpdated.ManagerId;
+            projectToUpdate.ProjectTitle = projectUpdated.ProjectTitle;
+            projectToUpdate.StartDate = projectUpdated.StartDate;
+            projectToUpdate.EndDate = projectUpdated.EndDate;
+           
             _context.SaveChanges();
             return "Project details updated";
         }
@@ -110,6 +110,15 @@ namespace TaskManager.Controllers
             projectToBeDeleted.IsValid = false;
             _context.SaveChanges();
             return Ok("Department Deleted");
+        }
+
+        [HttpGet("/getproj/{userid}")]
+        public IEnumerable<Project> Get(int userid)
+        {
+            var proj = (from Project in _context.Projects
+                        where Project.ManagerId == userid
+                        select Project).ToList<Project>();
+            return proj;
         }
     }
 }

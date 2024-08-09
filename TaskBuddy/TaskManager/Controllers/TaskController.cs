@@ -81,7 +81,8 @@ namespace TaskManager.Controllers
                 UpdateAt = DateTime.Now,
                 UploadAt = DateTime.Now,
                 ProjectId = taskDto.ProjectId,
-                UserId = taskDto.UserId
+                UserId = taskDto.UserId,
+                Deadline=taskDto.Deadline
             };
 
             _Context.Add(task);
