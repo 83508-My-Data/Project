@@ -25,9 +25,14 @@ function Login() {
           const data = result;
           sessionStorage.setItem('userId', data.result.userId);
           sessionStorage.setItem('token', data.result.token);
+          sessionStorage.setItem('roleName',data.result.role.roleName);
           navigate('/Tasks');
 
         } else {
+          const data = result;
+          sessionStorage.setItem('userId', data.result.userId);
+          sessionStorage.setItem('token', data.result.token);
+          sessionStorage.setItem('roleName',data.result.role.roleName); 
           navigate('/Dashboard');
         }
         toast.success(result.msg);
@@ -45,7 +50,7 @@ function Login() {
         <div className="login-box shadow-lg p-4 rounded bg-white">
           <h2 className="text-center mb-4">Login</h2>
           <div className="form-group mb-3">
-            <label htmlFor="email">Email:</label>
+            <label htmlFor="email"><b>Email:</b></label>
             <input
               id="email"
               type="email"
@@ -58,7 +63,7 @@ function Login() {
             {isEmailEmpty && <div className="invalid-feedback">Email is mandatory</div>}
           </div>
           <div className="form-group mb-4">
-            <label htmlFor="password">Password:</label>
+            <label htmlFor="password"><b>Password:</b></label>
             <input
               id="password"
               type="password"
@@ -67,13 +72,13 @@ function Login() {
                 setPassword(e.target.value);
                 setPasswordEmpty(e.target.value.length === 0);
               }}
-            />
+             />
             {isPasswordEmpty && <div className="invalid-feedback">Password is mandatory</div>}
           </div>
           <center>
           <div className="className='mb-2'">
           <div className="textc">
-            Don't have account ?<Link to='/Register'>Register here</Link>
+            Don't have account ?<Link to='/Register'> Register here</Link>
           </div>
 
           </div></center>

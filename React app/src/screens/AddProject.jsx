@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { addProject } from '../Services/project';
 
 function AddProject() {
-    const [projectTitle, setProjectTitle] = useState('');
+    const [projectTitle, setProjectTitle] =  useState('');
     const [startDate, setStartDate] = useState('');
     const navigate = useNavigate(); // Correctly initialize useNavigate
 
