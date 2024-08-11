@@ -137,5 +137,32 @@ namespace TaskBuddy.Controllers
             _Context.SaveChanges();
             return "User Is Deleted";
         }
+        [HttpGet("/getuserdept/{mngid}")]
+        public IEnumerable<User> GetUserDept(int mngid)
+        {
+            var user = _Context.Users.Find(mngid);
+            int dept = user.DeptId;
+            var users = (from User in _Context.Users
+                         where User.DeptId == dept && User.UserId != mngid && User.ManagerId == null && User.RoleId == 2
+                         select User).ToList<User>();
+            return users;
+        }
+        [HttpPost("/addemp")]
+        public string AddEmpMyTeam(int empid, int mngid)
+        {
+            User userToBeAdded = _Context.Users.Find(empid);
+            userToBeAdded.ManagerId = mngid;
+            _Context.SaveChanges();
+            return "Employee Is added to team";
+        }
+        [HttpGet("/getuser/{mngId}")]
+        public IEnumerable<User> GetUser(int mngId)
+
+        {
+            var users = (from User in _Context.Users
+                         where User.ManagerId == mngId
+                         select User).ToList<User>();
+            return users;
+        }
     }
 }
