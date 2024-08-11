@@ -4,8 +4,12 @@ import axios from 'axios';
 
 async function getProj(id) {
     try {
-        
-        const response = await axios.get(`https://localhost:7104/getproj/${id}`);
+        const token = sessionStorage.getItem('token');
+        const response = await axios.get(`https://localhost:7104/getproj/${id}`,{
+            headers:{
+                Authorization: `Bearer ${token}`,
+            },
+        });
         
         return response.data;
     } catch (ex) {
@@ -26,7 +30,12 @@ async function addProject(projectTitle,startDate)
 }
 export const getProjById = async (id) => {
     try {
-        const response = await axios.get(`https://localhost:7104/api/Project/${id}`);
+        const token = sessionStorage.getItem('token');
+        const response = await axios.get(`https://localhost:7104/api/Project/${id}`,{
+            headers:{
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('Error fetching project:', error);
