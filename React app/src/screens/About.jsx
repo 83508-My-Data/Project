@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar1 from '../component/Navbar1'
 import Sidebar from '../component/Sidebar';
 import '../Style/About.css'
-import Footer from '../component/Footer1';
+
 
 
 const About = () => {
@@ -49,7 +49,6 @@ const About = () => {
       </div>
       </div>
     </div>
-    <Footer />
     </>
   );
 }
