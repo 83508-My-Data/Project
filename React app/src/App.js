@@ -7,6 +7,7 @@ import Dashboard from './screens/Dashboard';
 
 import Tasks from './screens/Tasks';
 import Register from './screens/Register';
+import Notification from './screens/Notification';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/register' element={<Register></Register>} />
       <Route path='/tasks' element={<Tasks/>} />
-     
+      <Route path='/notification' element={<Notification/>} />
         
       </Routes>
       <ToastContainer />

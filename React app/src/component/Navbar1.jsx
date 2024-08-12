@@ -18,7 +18,7 @@ function Navbar1() {
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
               <Link
-                to='/Tasks'
+                to='/properties'
                 className='nav-link'
                 aria-current='page'
               >
@@ -27,7 +27,16 @@ function Navbar1() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/profile'
+                to='/notification'
+                className='nav-link'
+                aria-current='page'
+              >
+                <b><u>Notification</u></b>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/about'
                 className='nav-link'
                 aria-current='page'
               >

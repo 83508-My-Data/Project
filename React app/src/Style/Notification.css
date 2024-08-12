@@ -1,0 +1,65 @@
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+   
+  }
+  
+  .main-content {
+    display: flex;
+    flex: 1;
+    margin-top: 56px; /* Adjust this if your Navbar height changes */
+    
+  }
+  
+
+  /* Add custom styles here if necessary */
+.page-content {
+    padding: 20px;
+    margin-left: 200px; /* Adjust based on sidebar width */
+    
+}
+
+  /* Ensure the list group container stretches properly */
+.list-group {
+    width: 600px;
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto; /* Center the list group */
+    padding-right: 10px;
+  }
+  
+  .list-group-item {
+    background-color: #e3f2fd; /* Light blue background */
+    border: 1px solid #b3e5fc; /* Slightly darker border to match the background */
+    border-radius: 0.25rem; /* Rounded corners */
+    padding: 15px; /* Add padding for better spacing */
+    margin-bottom: 10px; /* Space between items */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #bbdefb; /* Slightly darker blue on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Slightly more pronounced shadow on hover */
+  }
+  
+  .d-flex {
+    display: flex;
+  }
+  
+  .w-100 {
+    width: 100%;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  
+  .mb-1 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .text-body-secondary {
+    color: #757575; /* Slightly muted text color for secondary information */
+  }
+  
