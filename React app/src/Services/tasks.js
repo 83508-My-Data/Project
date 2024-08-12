@@ -8,9 +8,10 @@ export default async function getAllTasks() {
     }
 }
 
-async function getAllEmployee(id) {
+async function getAllEmployee() {
     try {
-        var response = await axios.get(`https://localhost:7104/Manager/User/${id}`)
+        const id= sessionStorage.getItem("userId")
+        var response = await axios.get(`https://localhost:7104/getuser/${id}`)
         return response.data
     } catch (ex) {
         console.log(ex)
@@ -26,9 +27,10 @@ async function getAllTaskCategory() {
     }
 }
 
-async function getAllProjects(id) {
+async function getAllProjects() {
     try {
-        var response = await axios.get(`https://localhost:7104/Manager/Project/${id}`)
+        const id= sessionStorage.getItem("userId")
+        var response = await axios.get(`https://localhost:7104/getproj/${id}`)
         return response.data
     } catch (ex) {
         console.log(ex)

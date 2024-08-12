@@ -36,7 +36,7 @@ function EditTask(){
     async function taskload(tid) {
         debugger
         var result = await getTask(tid)
-        var user = await getAllEmployee(2)
+        var user = await getAllEmployee()
         var category = await getAllTaskCategory()
         setTitle(result.title)
         setPriority(result.priority)

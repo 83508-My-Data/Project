@@ -1,6 +1,7 @@
 import axios from "axios";
- async function getTask(id){
+ async function getTask(){
     try {
+        const id= sessionStorage.getItem("userId")
         var response = await axios.get(`https://localhost:7104/editLoad/${id}`)
         return response.data
     } catch (ex) {
@@ -9,7 +10,6 @@ import axios from "axios";
 }
 
 export default async function edit(id,attachment,priority,taskCategoryId,userId,deadline){
-    debugger
     const body = new FormData();
     body.append('editTaskDto.Priority',priority)
     body.append('attachment',attachment)
@@ -17,7 +17,6 @@ export default async function edit(id,attachment,priority,taskCategoryId,userId,
     body.append('editTaskDto.UserId',userId)
     body.append('editTaskDto.Deadline',deadline)
     try {
-
         var response = await axios.put(`https://localhost:7104/api/Task/${id}`, body , {
             headers: {
               'Content-Type': 'multipart/form-data',
