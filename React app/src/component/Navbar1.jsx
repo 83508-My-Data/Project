@@ -27,7 +27,16 @@ function Navbar1() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/profile'
+                to='/notification'
+                className='nav-link'
+                aria-current='page'
+              >
+                <b><u>Notification</u></b>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/about'
                 className='nav-link'
                 aria-current='page'
               >

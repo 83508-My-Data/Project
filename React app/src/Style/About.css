@@ -1,0 +1,31 @@
+
+
+.about-us-container {
+    text-align: center;
+    margin-bottom: 30px;
+    
+  }
+  
+  .about-us-heading {
+    font-size: 2.5rem; /* Larger font size for a more impactful heading */
+    color: #2c3e50; /* Darker, professional color */
+    font-weight: 700; /* Bold font weight */
+    text-transform: uppercase; /* Makes the heading uppercase */
+    letter-spacing: 1.5px; /* Adds spacing between letters for a clean look */
+    margin: 0; /* Removes default margin */
+    padding-bottom: 10px; /* Adds space below the heading */
+    border-bottom: 2px solid #2980b9; /* Adds a subtle border under the heading */
+    display: inline-block; /* Keeps the heading and border confined */
+  }
+  .bgcolor-blue {
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+  }  
+
+  
+  .card-text {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+  }

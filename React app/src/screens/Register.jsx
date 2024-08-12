@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../Style/RegistrationForm.css'; 
 import Navbar2 from '../component/Navbar2';
-import { useNavigate } from 'react-router-dom';
+
 import { toast } from 'react-toastify';
 import register from '../Services/register';
-
+import { Link, useNavigate } from 'react-router-dom';
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -56,7 +56,7 @@ const Register = () => {
 
         var roleid = parseInt(role)
         var deptid = parseFloat(selectedDepartment)
-        await register(firstName, lastName, email, password, dob, mobile, address, roleid, deptid);
+        const result=await register(firstName, lastName, email, password, dob, mobile, address, roleid, deptid);
         
         if(result.status){
           toast.success(result.msg);
@@ -70,9 +70,9 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div >
       <Navbar2 />
-      <div id="maindiv">
+      <div id="bckimg">
         <div className="container mt-5">
           <div className="heading-container">
             <h1>Registration Form</h1>
@@ -197,7 +197,9 @@ const Register = () => {
                     ))}
                   </select>
                 </div>
+                
               </div>
+              
               <button type="submit" className="btn btn-primary">Register</button>
             </form>
           </div>

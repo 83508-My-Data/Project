@@ -1,16 +1,59 @@
 
+.login-box {
+  max-width: 400px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 20px; 
+  box-shadow: 0 50px px rgba(0, 0, 0, 0.1); }
 
-.wide-input {
-    width: 100%; 
-    max-width: 300px; 
+.login-box h2 {
+  color: #333;
+  font-size: 1.75rem;
 }
-  .Login-Box {
-    border: 2px solid #ddd; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    padding: 20px;
-    margin: 20px auto; 
-    max-width: 500px; 
-    background-color: #fff; 
-  }
-  
+
+.form-control {
+  border-radius: 0.25rem;
+}
+
+.invalid-feedback {
+  display: block;
+  color: #dc3545;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 0.25rem;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+.bckimg {
+  position: relative;
+  background-image: url('../images/h1.jpg');
+  background-size: cover; /* Ensure the image covers the element */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+}
+
+.bckimg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Adjust rgba value for desired opacity */
+  /* Alternatively, use:
+     background: rgba(255, 255, 255, 0.5); 
+     if you want a white overlay */
+  pointer-events: none; /* Ensure it doesn’t interfere with user interaction */
+  z-index: 1; /* Make sure it’s above the background image but below content */
+}
+
+.bckimg > * {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}

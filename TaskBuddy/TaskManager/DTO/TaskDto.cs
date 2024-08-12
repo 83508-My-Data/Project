@@ -10,8 +10,8 @@ namespace TaskManager.DTO
        
         public string Title { get; set; }
         public string Description { get; set; }
-        
-        
+        public DateTime Deadline { get; set; }
+
         public int Priority { get; set; }
         public int TaskCategoryId { get; set; }
         public int ProjectId { get; set; }

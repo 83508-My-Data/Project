@@ -1,0 +1,45 @@
+/* Project.css */
+.table-container {
+    margin-top: 50px;
+}
+.button
+{
+    text-align: center;
+}
+.addproj{
+    margin-top: 100px;
+}
+.form-box {
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 20px; /* Padding inside the box */
+    background-color: #fff; /* White background */
+    max-width: 600px; /* Max width of the form box */
+    margin: 0 auto; /* Center the form box horizontally */
+}
+
+.table-header {
+    background-color: #007bff; /* Bootstrap blue color */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 1000px;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.table {
+    width: 1000px;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #dee2e6; /* Border color */
+}
+
+.table th {
+    background-color: #f8f9fa; /* Light grey background for headers */
+}

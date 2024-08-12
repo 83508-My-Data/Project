@@ -1,0 +1,49 @@
+/* EditProfileFinal.css */
+.edit-profile-container {
+    margin-top: 250px; /* Adjust margin-top */
+}
+
+.edit-profile-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+.edit-profile-table th, .edit-profile-table td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: left;
+}
+
+.edit-profile-table th {
+    background-color: #f8f9fa;
+    font-weight: bold; /* Make headings bold */
+}
+
+.edit-profile-table td {
+    background-color: #ffffff;
+}
+
+.edit-profile-form-control {
+    width: 100%;
+}
+
+.edit-profile-form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 .2rem rgba(38, 143, 255, .25);
+}
+
+.edit-profile-submit-btn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-profile-submit-btn:hover {
+    background-color: #0056b3;
+}

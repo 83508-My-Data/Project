@@ -5,7 +5,7 @@ function Navbar() {
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
-      style={{ backgroundColor: '#add8e6', width: '100%', margin: '0' }}
+      style={{ backgroundColor: '#6EACDA', width: '100%', margin: '0' }}
       data-bs-theme='light'
     >
       <div className='container-fluid'>
