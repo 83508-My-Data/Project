@@ -65,9 +65,9 @@ const onAddTask= async (e) => {
 }
 
 async function load(){
-    var user = await getAllEmployee(2)
+    var user = await getAllEmployee()
     var category = await getAllTaskCategory()
-    var project = await getAllProjects(2)
+    var project = await getAllProjects()
     setUsers(user)
     setTaskCategorys(category)
     setProjects(project)
