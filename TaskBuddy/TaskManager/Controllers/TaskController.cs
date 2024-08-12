@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using TaskManager.Models;
 using TaskManager.Filters;
+using Microsoft.SqlServer.Server;
+using TaskManager.DTO;
 
 namespace TaskManager.Controllers
 {
@@ -12,8 +14,6 @@ namespace TaskManager.Controllers
     [GlobalExceptionHandler]
     public class TaskController : ControllerBase
     {
-
-
 
         TaskBuddyContext _Context = null;
 
@@ -44,6 +44,12 @@ namespace TaskManager.Controllers
             return task;
         }
 
+        [HttpGet("/editLoad/{id}")]
+        public Tasks loadTask(int id)
+        {
+            return _Context.TaskList.Find(id);
+        }
+
         // GET api/<TaskController>/5
         [HttpGet("{userid}")]
         public IEnumerable<Tasks> Get(int userid)
@@ -59,11 +65,11 @@ namespace TaskManager.Controllers
         {
             if (formData.Attachment != null && formData.Attachment.Length > 0)
             {
-
                 var filePath = Path.Combine("Upload\\Files\\", formData.Attachment.FileName);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     formData.Attachment.CopyToAsync(stream);
+                    stream.Close();
                 }
             }
 
@@ -82,7 +88,8 @@ namespace TaskManager.Controllers
                 UploadAt = DateTime.Now,
                 ProjectId = taskDto.ProjectId,
                 UserId = taskDto.UserId,
-                Deadline=taskDto.Deadline
+                IsValid = true,
+                Deadline = taskDto.Deadline
             };
 
             _Context.Add(task);
@@ -91,8 +98,33 @@ namespace TaskManager.Controllers
         }
         // PUT api/<TaskController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ApiResponse<string> editTask(int id, [FromForm] EditTaskFormData formData)
         {
+            Tasks task = _Context.TaskList.Find(id);
+            if (task != null)
+            {
+                if (formData.Attachment != null && formData.Attachment.Length > 0)
+                {
+                    var filePath = Path.Combine("Upload\\Files\\", formData.Attachment.FileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        formData.Attachment.CopyToAsync(stream);
+                        stream.Close();
+                    }
+                }
+
+                var editTask = formData.EditTaskDto;
+
+                task.Priority = editTask.Priority;
+                task.AttachmentPath = formData.Attachment?.FileName;
+                task.UpdateAt = DateTime.Now;
+                task.Category = _Context.TaskCategories.Find(editTask.TaskCategoryId);
+                task.CurrentUser = _Context.Users.Find(editTask.UserId);
+                task.Deadline = editTask.Deadline;
+                _Context.SaveChanges();
+                return new ApiResponse<string> { status = true, Msg = "Success", result = "Edited Successfully" };
+            }
+            return new ApiResponse<string> { status = false, Msg = "Error", result = "Edited Failed" };
         }
 
         // DELETE api/<TaskController>/5
