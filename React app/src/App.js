@@ -5,10 +5,11 @@ import Login from './screens/Login'
 import AddTask from './screens/AddTask'
 import Edittask from './screens/Edittask'
 import Dashboard from './screens/Dashboard';
-import Tasks from './screens/Tasks';
+import ManagerTasks from './screens/ManagerTasks';
 import Register from './screens/Register';
 import Notification from './screens/Notification';
 import About from './screens/About';
+import EmployeeTasks from './screens/EmployeeTasks'
 
 function App() {
   return (
@@ -19,11 +20,12 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/register' element={<Register></Register>} />
-      <Route path='/tasks' element={<Tasks/>} />
+      <Route path='/managertasks' element={<ManagerTasks/>} />
       <Route path='/notification' element={<Notification/>} />
       <Route path='/about' element={<About/>} />
       <Route path='/addtask' element = {<AddTask/>} /> 
-      <Route path='/edittask' element = {<Edittask/>} />
+      <Route path='/edittask/:id' element = {<Edittask/>} />
+      <Route path='/employeetask' element = {<EmployeeTasks/>} />
 
       </Routes>
       <ToastContainer />

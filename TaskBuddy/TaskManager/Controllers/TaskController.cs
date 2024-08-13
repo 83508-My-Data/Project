@@ -5,6 +5,8 @@ using TaskManager.Models;
 using TaskManager.Filters;
 using Microsoft.SqlServer.Server;
 using TaskManager.DTO;
+using TaskManager.Exceptions;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace TaskManager.Controllers
 {
@@ -21,25 +23,66 @@ namespace TaskManager.Controllers
         {
             _Context = context;
         }
-        // GET: api/<TaskController>
+       
+
         [HttpGet]
         public IEnumerable<Tasks> Get()
         {
-            return _Context.TaskList.ToList();
+            return (from Tasks in _Context.TaskList
+                    where Tasks.IsValid == true
+                    select Tasks).ToList();
         }
+
         [HttpGet("/pendingtask")]
         public IEnumerable<Tasks> GetPendingTask()
         {
             var task= (from Tasks in _Context.TaskList
-                       where Tasks.Status == false
+                       where Tasks.Status == false && Tasks.IsValid == true
                        select Tasks).ToList<Tasks>();
             return task;
         }
+
+        [HttpGet("/pendingtask/{id}")]
+        public IEnumerable<Tasks> GetPendingTask(int id)
+        {
+            var task = (from Tasks in _Context.TaskList
+                        where Tasks.Status == false && Tasks.UserId == id && Tasks.Deadline > DateTime.Now && Tasks.IsValid == true
+                        select Tasks).ToList<Tasks>();
+            return task;
+        }
+
+        [HttpGet("/uncompletedtask")]
+        public IEnumerable<Tasks> GetUncompletedTask()
+        {
+            var task = (from Tasks in _Context.TaskList
+                        where Tasks.Status == false && Tasks.Deadline < DateTime.Now && Tasks.IsValid == true
+                        select Tasks).ToList<Tasks>();
+            return task;
+        }
+
+        [HttpGet("/uncompletedtask/{id}")]
+        public IEnumerable<Tasks> GetUncompletedTask(int id)
+        {
+            var task = (from Tasks in _Context.TaskList
+                        where Tasks.Status == false && Tasks.UserId == id && Tasks.Deadline < DateTime.Now && Tasks.IsValid == true
+                        select Tasks).ToList<Tasks>();
+            return task;
+        }
+
         [HttpGet("/completedtask")]
         public IEnumerable<Tasks> GetCompletedTask()
         {
             var task = (from Tasks in _Context.TaskList
-                        where Tasks.Status == true
+                        where Tasks.Status == true && Tasks.IsValid == true
+                        select Tasks).ToList<Tasks>();
+            return task;
+        }
+
+        [HttpGet("/completedtask/{id}")]
+        public IEnumerable<Tasks> GetCompletedTask(int id)
+        {
+            var task = (from Tasks in _Context.TaskList
+                        where Tasks.Status == true && Tasks.UserId == id && Tasks.Deadline > DateTime.Now && Tasks.IsValid == true
                         select Tasks).ToList<Tasks>();
             return task;
         }
@@ -47,7 +90,12 @@ namespace TaskManager.Controllers
         [HttpGet("/editLoad/{id}")]
         public Tasks loadTask(int id)
         {
-            return _Context.TaskList.Find(id);
+            var task =_Context.TaskList.Find(id);
+            if (task.IsValid)
+            {
+                return task;
+            }
+            return null;
         }
 
         // GET api/<TaskController>/5
@@ -55,10 +103,12 @@ namespace TaskManager.Controllers
         public IEnumerable<Tasks> Get(int userid)
         {
             var task = (from Tasks in _Context.TaskList
-                        where Tasks.UserId == userid
+                        where Tasks.UserId == userid && Tasks.Deadline > DateTime.Now && Tasks.IsValid == true
                         select Tasks).ToList<Tasks>();
             return task;
         }
+
+        
 
         [HttpPost("/addtask")]
         public IActionResult Post([FromForm] TaskFormData formData)
@@ -101,7 +151,7 @@ namespace TaskManager.Controllers
         public ApiResponse<string> editTask(int id, [FromForm] EditTaskFormData formData)
         {
             Tasks task = _Context.TaskList.Find(id);
-            if (task != null)
+            if (task != null && task.IsValid == true)
             {
                 if (formData.Attachment != null && formData.Attachment.Length > 0)
                 {
@@ -129,19 +179,46 @@ namespace TaskManager.Controllers
 
         // DELETE api/<TaskController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public ApiResponse<string> Delete(int id)
         {
-            Tasks taskToBeDeleted = _Context.TaskList.Find(id);
+            Tasks taskToBeDeleted = _Context.TaskList.Find(id) ?? throw new CustomExceptions("Invalid");
             if (!taskToBeDeleted.IsValid)
             {
-                return Ok("Already Deleted");
+                return new ApiResponse<string> { status= false, Msg= "Already Deleted" , result = "Invalid"};
             }
             taskToBeDeleted.IsValid = false;
             _Context.SaveChanges();
-            return Ok("task Deleted");
+            return new ApiResponse<string> { status= true , Msg= "Successfully Deleted", result= "Success"};
         }
+
+        [HttpPut("/status/{id}")]
+        public string UpdateStatus(int id)
+        {
+            Tasks task = _Context.TaskList.Find(id);
+            if(task != null && task.IsValid == true)
+            {
+                task.Status = true;
+                _Context.SaveChanges();
+                return "Success";
+            }
+            return null;
+        }
+
+        [HttpPut("/status/reset/{id}")]
+        public string ResetStatus(int id)
+        {
+            Tasks task = _Context.TaskList.Find(id);
+            if (task != null && task.IsValid == true)
+            {
+                task.Status = false;
+                _Context.SaveChanges();
+                return "Reset Successful";
+            }
+            return null;
+        }
+
+
         [HttpGet("/DownloadFile/{id}")]
-      
         public async Task<IActionResult> DownloadFile(int id)
         {
             var task = _Context.TaskList.Find(id);

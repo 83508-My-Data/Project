@@ -24,12 +24,24 @@ function EditTask(){
 
     const taskedit = async(e) => {
         e.preventDefault();
+        if(!attachment){
+            toast.error("Please Add Attachment")
+        }else if(priority == ""){
+            toast.error("Please select priority")
+        }else if(!userId){
+            toast.error("Please select Employee")
+        }else if(deadline.length == ""){
+            toast.error("Please enter Deadline Date")
+        }else if(!taskCategoryId){
+            toast.error("Please select Task Category")
+        }else{
         var result = await edit(id,attachment,priority,taskCategoryId,userId,deadline)
         if(result.status){
             toast.success("Task Edited")
-            navigate('/tasks')
+            navigate('/managertasks')
         }else{
             toast.error("Fail to edit")
+        }
         }
     }
 
