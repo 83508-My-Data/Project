@@ -30,7 +30,13 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/myProfile' element={<MyProfileFinal />} />
         <Route path='/editProfile/:id' element={<EditProfile />} />
-
+        <Route path='/project' element={<Project></Project>}/>
+     <Route path='/addproject' element={<AddProject></AddProject>}/>
+     <Route path='/editproject/:id' element={<EditProject></EditProject>}/>
+     <Route path='/download' element={<FileDownloadButton></FileDownloadButton>}/>
+      <Route path='/myteam' element={<MyTeam></MyTeam>}/>
+      <Route path='/addteam' element={<AddMyTeam></AddMyTeam>}/>
+      <Route path='/updatepass' element={<UpdatePassword></UpdatePassword>}/>
       </Routes>
       <ToastContainer />
     </div>

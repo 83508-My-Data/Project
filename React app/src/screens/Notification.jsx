@@ -2,21 +2,27 @@ import React, { useState } from 'react';
 import Navbar1 from '../component/Navbar1'
 import Sidebar from '../component/Sidebar'
 import '../Style/Notification.css';
+import getNotify from '../Services/notification'
+import { useEffect } from 'react';
 
 
-const initialNotifications = [
-    { id: 1, message: "Notification 1", time: "3 days ago", content: "Some placeholder content in a paragraph.", smallPrint: "And some small print." },
-    { id: 2, message: "Notification 2", time: "2 days ago", content: "Some other placeholder content in a paragraph.", smallPrint: "And some muted small print." },
-    { id: 3, message: "Notification 3", time: "1 day ago", content: "Additional placeholder content in a paragraph.", smallPrint: "And more small print." },
-  ];
   
   function Notification() {
-    const [notifications, setNotifications] = useState(initialNotifications);
+    const [notifications, setNotifications] = useState([]);
   
     const handleRemove = (id) => {
       setNotifications(notifications.filter(notification => notification.id !== id));
     };
-  
+    const getNotification= async ()=>
+    {
+      const result=await getNotify()
+      console.log(result)
+      setNotifications(result)
+    }
+    useEffect(()=>
+    {
+      getNotification()
+    },[])
     return (
       <div className="app-container">
         <Navbar1 />
@@ -29,14 +35,14 @@ const initialNotifications = [
                   key={notification.id}
                   href="#"
                   className="list-group-item list-group-item-action"
-                  onClick={() => handleRemove(notification.id)}
+                  onClick={() => handleRemove(notification.notificationId)}
                 >
                   <div className="d-flex w-100 justify-content-between">
-                    <h5 className="mb-1">{notification.message}</h5>
-                    <small className="text-body-secondary">{notification.time}</small>
+                    <h5 className="mb-1">{notification.notificationText}</h5>
+                    
                   </div>
-                  <p className="mb-1">{notification.content}</p>
-                  <small className="text-body-secondary">{notification.smallPrint}</small>
+              <p className="mb-1">Time: {notification.createdOn}</p>
+                  <small className="text-body-secondary"></small>
                 </a>
               ))}
             </div>

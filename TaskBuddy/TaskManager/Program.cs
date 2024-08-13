@@ -5,9 +5,10 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Proxies;
 using Microsoft.OpenApi.Models;
-
+using Microsoft.AspNetCore.Http.Features;
+using EmailService;
 namespace TaskManager
-{
+{   
     public class Program
     {
         public static void Main(string[] args)
@@ -57,7 +58,23 @@ namespace TaskManager
             {
                 options.AddPolicy("RequireLoggedIn", policy => policy.RequireAuthenticatedUser());
                 options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+                
             });
+            var emailConfig = builder.Configuration
+    .GetSection("EmailConfiguration")
+    .Get<EmailConfiguration>();
+
+            // Register EmailConfiguration as a singleton
+            builder.Services.AddSingleton(emailConfig);
+
+            // Register EmailSender as a scoped service
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
+            builder.Services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
             builder.Services.AddEndpointsApiExplorer();
             //builder.Services.AddSwaggerGen();
             builder.Services.AddSwaggerGen(c => 

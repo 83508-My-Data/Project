@@ -21,8 +21,8 @@ function AddProject() {
         } else {
             try {
                 const result = await addProject(projectTitle, startDate);
-                
-                if (result=="project Added Successfully") {
+                console.log(result)
+                if (result=="Project Added Successfully") {
                     toast.success("successfully added project");
                     navigate("/Project"); 
                 } else {

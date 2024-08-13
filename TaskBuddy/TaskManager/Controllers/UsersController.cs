@@ -168,5 +168,28 @@ namespace TaskBuddy.Controllers
                          select User).ToList<User>();
             return users;
         }
+
+        [HttpPut("/updatepass")]
+        public string UpdatePassOtp([FromBody] OtpPassword otppassword)
+
+        {
+            var user = (from User in _Context.Users
+                        where User.Email == otppassword.Email
+                        select User).FirstOrDefault();
+            var otpuser = _Context.Otps
+    .Where(o => o.UserId == user.UserId)
+    .OrderByDescending(o => o.GeneratedOn)
+    .FirstOrDefault();
+            if (otpuser.OtpValue == otppassword.otp)
+            {
+                user.Password = PasswordEncrypt.HashPassword(otppassword.NewPassword);
+
+                _Context.SaveChanges();
+                return "password updated successfully";
+            }
+            return "password not updated successfully";
+
+
+        }
     }
 }
