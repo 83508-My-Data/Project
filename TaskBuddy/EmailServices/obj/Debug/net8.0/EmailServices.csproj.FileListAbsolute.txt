@@ -1,0 +1,12 @@
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\bin\Debug\net8.0\EmailServices.deps.json
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\bin\Debug\net8.0\EmailServices.dll
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\bin\Debug\net8.0\EmailServices.pdb
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.csproj.AssemblyReference.cache
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.AssemblyInfoInputs.cache
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.AssemblyInfo.cs
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.csproj.CoreCompileInputs.cache
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.dll
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\refint\EmailServices.dll
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\EmailServices.pdb
+C:\Users\subha\OneDrive\Desktop\TaskBuddy\EmailServices\obj\Debug\net8.0\ref\EmailServices.dll

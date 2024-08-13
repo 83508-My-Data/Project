@@ -8,7 +8,7 @@ const SidebarAt = () => {
         <h2 className="sidebar-title">Dashboard</h2>
       <ul className="sidebar-menu">
         <li className="sidebar-menu-item">
-          <a href="/task"><u>Home</u></a>
+          <a href="/myProfile"><u>Home</u></a>
         </li>
         
         <li className="sidebar-menu-item">

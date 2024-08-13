@@ -60,7 +60,7 @@ function Dashboard() {
                         {teams.length > 0 ? (
                             <div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
                                 <table className="table table-striped table-bordered">
-                                    <thead className="table-dark">
+                                    <thead className="table-black">
                                         <tr>
                                             <th>Team ID</th>
                                             <th>Name</th>
@@ -91,7 +91,7 @@ function Dashboard() {
                         {tasks.length > 0 ? (
                             <div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
                                 <table className="table table-striped table-bordered">
-                                    <thead className="table-dark">
+                                    <thead className="table-black">
                                         <tr>
                                             <th>Task ID</th>
                                             <th>Title</th>

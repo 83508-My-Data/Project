@@ -33,13 +33,50 @@ function EmployeeTasks() {
     }
 
     async function download(id){
-        await axios.get(`https://localhost:7104/DownloadFile/${id}`)
+        try {
+            // Make a GET request to the download endpoint with dynamic fileId
+            const response = await axios.get(`https://localhost:7104/DownloadFile/${id}`, {
+              responseType: 'blob', // Set the response type to blob
+            });
+      
+            // Extract filename from Content-Disposition header
+            const contentDisposition = response.headers['content-disposition'];
+            let filename = 'file'; // Default filename
+      
+            if (contentDisposition) {
+              // Regex to match both filename and filename* parameters
+              const filenameRegex = /filename\*?=(?:UTF-8''|)([^;,\n]*)/;
+              const matches = filenameRegex.exec(contentDisposition);
+      
+              if (matches && matches[1]) {
+                filename = decodeURIComponent(matches[1].replace(/['"]/g, ''));
+              }
+            }
+      
+            // Create a URL for the file and trigger a download
+            const blob = new Blob([response.data], { type: response.headers['content-type'] });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', filename); // Use the extracted filename
+      
+            // Append link to the body, click to trigger download, and then remove it
+            document.body.appendChild(link);
+            link.click();
+      
+            // Cleanup
+            link.parentNode.removeChild(link);
+            window.URL.revokeObjectURL(url);
+          } catch (error) {
+            console.error('Error downloading the file:', error);
+          }
     }
 
     async function updateStat(id){
         var result = await updateStauts(id)
         if(result != null){
             toast.success("Status Updated")
+            load()
         }else{
             toast.error("Failed")
         }
@@ -49,6 +86,7 @@ function EmployeeTasks() {
         var result = await resetStauts(id)
         if(result != null){
             toast.success("Reset Successful")
+            load()
         }else{
             toast.error("Failed")
         }
@@ -70,7 +108,7 @@ function EmployeeTasks() {
                     <br />
                     <br />
                     <br />
-                    <div className="row">
+                    <div className="col">
                         <div className="col-5"></div>
                         <div className="col-5"></div>
                         <div className="col-2"> 
@@ -92,7 +130,7 @@ function EmployeeTasks() {
                 {tasks.length > 0 && (<div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
                 <table className="table table-striped table-bordered table-responsive caption-top">
                 <caption className="bg-black"><center><h3 className="text-light">Task List</h3></center></caption>
-                <thead className="table-dark">
+                <thead className="table-black">
                     <tr>
                         <th scope="col">S.No</th>
                         <th scope="col">Title</th>

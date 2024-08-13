@@ -11,7 +11,7 @@ const SidebarM = () => {
           <a href="#home"><u>Home</u></a>
         </li>
         <li className="sidebar-menu-item">
-          <a href="#analytics"><u>My Profile</u></a>
+          <a href="/myProfile"><u>My Profile</u></a>
         </li>
         <li className="sidebar-menu-item">
           <a href="/managertasks"><u>Tasks</u></a>

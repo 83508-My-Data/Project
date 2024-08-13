@@ -76,8 +76,8 @@ function EditTask(){
                 <div className="col">
                         <div className="container bg-primary bg-opacity-25 shadow mb-5 rounded">
                             <form onSubmit={taskedit}>
-                                <div className="row">
-                                    <div className="group">
+                                <div className="col">
+                                    <div className="col">
                                     <label className="form-label">Title</label>
                                     <input type="text" className="form-control" 
                                         id="title"
@@ -86,15 +86,15 @@ function EditTask(){
                                         readOnly
                                     />
                                     </div>
-                                    <div className="group">
+                                    <div className="col">
                                     <label className="form-label">Select Attachment File</label>
                                     <input className="form-control" type="file" id="formFile" 
                                         onChange={(e)=> {setAttachment(e.target.files[0])}}
                                     />
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="group">
+                                <div className="col">
+                                    <div className="col">
                                     <label className="form-label">Priority</label>
                                     <input type="number" className="form-control" min={1} max={10}  
                                         id="priority"
@@ -103,7 +103,7 @@ function EditTask(){
                                         onChange={(e) => ( setPriority(e.target.value))}
                                     />
                                     </div>
-                                    <div className="group">
+                                    <div className="col">
                                     <label className="form-label">Task Category</label>
                                     <select
                                         id="category"
@@ -120,8 +120,8 @@ function EditTask(){
                                     </select>
                                     </div>
                                 </div>
-                                <div className="row">
-                                    <div className="group">
+                                <div className="col">
+                                    <div className="col">
                                     <label className="form-label">Employee</label>
                                     <select
                                         id="employee"
@@ -137,7 +137,7 @@ function EditTask(){
                                     ))}
                                     </select>
                                     </div>
-                                    <div className="group">
+                                    <div className="col">
                                     <label className="form-label">Deadline Date</label>
                                     <input type="date" className="form-control" 
                                         id="deadline"
@@ -145,7 +145,7 @@ function EditTask(){
                                         onChange={(e) => ( setDeadline(e.target.value))}
                                     />
                                     </div>
-                                </div><div className="row">
+                                </div><div className="col">
                                     <div className="col">
                                     </div>
                                     <div className="col">

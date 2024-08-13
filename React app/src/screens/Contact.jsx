@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar1 from "../component/Navbar1";
-import Sidebar from '../component/Sidebar';
+import Navbar from "../component/Navbar";
+
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -52,19 +52,18 @@ const Contact = () => {
 
     return (
         <div>
-            <Navbar1 />
-            <Sidebar />
-            <section className="py-3 py-md-5 py-xl-8">
+            <Navbar />
+            <br/>
+            <br/>
+            <section className="py-3 py-md-5 py-8">
                 <div className="container">
-                    <div className="row justify-content-md-center">
-                        <div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                        <center><div className="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6 ">
                             <h2 className="mb-4 display-5 text-center">Need Help</h2>
                             <p className="text-secondary mb-5 text-center lead fs-4">Our team is available to provide prompt and helpful responses to all inquiries. You can reach us via phone, email, or by filling out the contact form below.</p>
                             <hr className="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle"/>
-                        </div>
-                    </div>
+                        </div></center>
+                        
                 </div>
-
                 <div className="container">
                     <div className="row">
                         {/* Static Information Column */}
