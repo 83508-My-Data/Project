@@ -25,7 +25,11 @@ function App() {
       <Route path='/about' element={<About/>} />
       <Route path='/addtask' element = {<AddTask/>} /> 
       <Route path='/edittask/:id' element = {<Edittask/>} />
-      <Route path='/employeetask' element = {<EmployeeTasks/>} />
+        <Route path='/employeetask' element={<EmployeeTasks />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/myProfile' element={<MyProfileFinal />} />
+        <Route path='/editProfile/:id' element={<EditProfile />} />
 
       </Routes>
       <ToastContainer />

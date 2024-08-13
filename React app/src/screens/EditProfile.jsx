@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Navbar1 from "../component/Navbar1";
 import Sidebar from '../component/Sidebar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const EditProfileFinal = () => {
+   var navigate= useNavigate()
     const [profileData, setProfileData] = useState({
         firstName: '',
         lastName: '',
@@ -14,11 +17,13 @@ const EditProfileFinal = () => {
     });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const userId=sessionStorage.getItem("userId")
 
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                const response = await axios.get('https://localhost:7104/api/Users/14'); 
+                
+                const response = await axios.get(`https://localhost:7104/api/Users/${userId}`); 
                 if (response.status === 200) {
                     setProfileData(response.data);
                 } else {
@@ -46,8 +51,15 @@ const EditProfileFinal = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put('https://localhost:7104/api/Users/14', profileData);
-            alert('Profile updated successfully!');
+            debugger
+            var response = await axios.put(`https://localhost:7104/api/Users/${userId}`, profileData);
+            if(response.data.status){
+                toast.success(response.data.msg)
+                navigate('/myProfile')
+            }
+            else{
+                toast.error(response.data.msg)
+            }
         } catch (err) {
             setError('Failed to update profile.');
         }
@@ -92,7 +104,7 @@ const EditProfileFinal = () => {
                     <div className="mb-3">
                         <label htmlFor="dob" className="form-label">D.O.B.</label>
                         <input
-                            type="text"
+                            type="date"
                             id="dob"
                             name="dob"
                             value={profileData.dob}

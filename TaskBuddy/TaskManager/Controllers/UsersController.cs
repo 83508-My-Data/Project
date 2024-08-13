@@ -101,18 +101,22 @@ namespace TaskBuddy.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateUserDetails(int id, [FromBody] UpdateUserDto userUpdated)
+        public ApiResponse<string> UpdateUserDetails(int id, [FromBody] UpdateUserDto userUpdated)
         {
             User user = _Context.Users.Find(id);
             user.FirstName = userUpdated.FirstName;
             user.LastName = userUpdated.LastName;
+            if (userUpdated.Email.Equals(user.Email))
+            {
+                return new ApiResponse<string> { status = false, Msg = "Email Already Registered", result = "Change Email" };
+            }
             user.Email = userUpdated.Email;
             user.Address= userUpdated.Address;
             user.UpdatedAt= DateTime.Now;
             user.MobileNo= userUpdated.MobileNo;
             user.DOB= userUpdated.DOB;
             _Context.SaveChanges();
-            return Ok("Succesfully Updated");
+            return new ApiResponse<string> { status = true, Msg = "Successfully Updated", result = "Updated" };
         }
 
         [HttpPut("/password/{id}")]
