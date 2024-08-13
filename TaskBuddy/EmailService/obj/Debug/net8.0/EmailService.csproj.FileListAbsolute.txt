@@ -1,0 +1,12 @@
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.csproj.AssemblyReference.cache
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.GeneratedMSBuildEditorConfig.editorconfig
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.AssemblyInfoInputs.cache
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.AssemblyInfo.cs
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.csproj.CoreCompileInputs.cache
+E:\TaskBuddy\EmailService\bin\Debug\net8.0\EmailService.deps.json
+E:\TaskBuddy\EmailService\bin\Debug\net8.0\EmailService.dll
+E:\TaskBuddy\EmailService\bin\Debug\net8.0\EmailService.pdb
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.dll
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\refint\EmailService.dll
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\EmailService.pdb
+E:\TaskBuddy\EmailService\obj\Debug\net8.0\ref\EmailService.dll

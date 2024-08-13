@@ -11,7 +11,7 @@ function Project() {
 
     const proj = async () => {
         try {
-            const result = await getProj(1007);
+            const result = await getProj();
             console.log(result)
             setProjects(result);
         } catch (error) {

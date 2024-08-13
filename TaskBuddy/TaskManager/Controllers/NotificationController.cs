@@ -46,21 +46,12 @@ namespace TaskManager.Controllers
             return _context.Notifications.Find(id);
         }
 
-        // POST api/<NotificationController>
-        [HttpPost]
-        public string AddNotification([FromBody] NotificationDTO notificationdto)
-        {
-            Notification notification = new Notification();
-            notification.NotificationText = notificationdto.Notification;
-            notification.Status = false;
-            notification.UserFrom = _context.Users.Find(notificationdto.UserIdFrom);
-            notification.UserTo = _context.Users.Find(notificationdto.UserIdFrom);
-            notification.CreatedOn = DateTime.Now;
-            _context.Notifications.Add(notification);
-            _context.SaveChanges();
-            return "Succesfully Added";
+        [HttpGet("/getnotify/{userId}")]
+        public List<Notification> GetNotifyById(int userId) {
+        
+        var notify=_context.Notifications.Where(notif=> notif.UserIdTo==userId).OrderByDescending(d=> d.CreatedOn).Take(5).ToList();
+            return notify;
         }
-
         //[HttpPut("{id}")]
         //public void Put(int id, [FromBody] string value)
         //{

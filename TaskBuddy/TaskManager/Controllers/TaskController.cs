@@ -144,6 +144,18 @@ namespace TaskManager.Controllers
 
             _Context.Add(task);
             _Context.SaveChanges();
+            var us= _Context.Users.Where(user=>user.UserId== taskDto.UserId).FirstOrDefault();
+            Notification notify = new Notification()
+            {
+                NotificationText="New task added",
+                CreatedOn=DateTime.Now,
+                UserIdTo=taskDto.UserId,
+                UserIdFrom=us.ManagerId ?? 0,
+
+
+            };
+            _Context.Notifications.Add(notify);
+            _Context.SaveChanges();
             return Ok("Created successfully");
         }
         // PUT api/<TaskController>/5

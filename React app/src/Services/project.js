@@ -2,10 +2,11 @@ import axios from 'axios';
 
 
 
-async function getProj(id) {
+async function getProj() {
     try {
+        var managerId=sessionStorage.getItem("userId")
         const token = sessionStorage.getItem('token');
-        const response = await axios.get(`https://localhost:7104/getproj/${id}`,{
+        const response = await axios.get(`https://localhost:7104/getproj/${managerId}`,{
             headers:{
                 Authorization: `Bearer ${token}`,
             },
@@ -17,8 +18,9 @@ async function getProj(id) {
     }
 }
 async function addProject(projectTitle,startDate)
-{   var managerId=1007
+{   var managerId=sessionStorage.getItem("userId")
     var endDate=startDate
+
     const body={projectTitle,startDate,endDate,managerId}
     try {
         const response=await axios.post(`https://localhost:7104/api/Project`,body)
