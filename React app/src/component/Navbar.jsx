@@ -17,7 +17,7 @@ function Navbar() {
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
               <Link
-                to='/properties'
+                to='/home'
                 className='nav-link'
                 aria-current='page'
               >
@@ -26,7 +26,7 @@ function Navbar() {
             </li>
             <li className='nav-item'>
               <Link
-                to='/profile'
+                to='/about'
                 className='nav-link'
                 aria-current='page'
               >
@@ -49,6 +49,15 @@ function Navbar() {
                 aria-current='page'
               >
                 <b><u>Register</u></b>
+              </Link>
+            </li>
+            <li className='nav-item'>
+              <Link
+                to='/login'
+                className='nav-link'
+                aria-current='page'
+              >
+                <b><u>Login</u></b>
               </Link>
             </li>
           </ul>

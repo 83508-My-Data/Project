@@ -26,7 +26,7 @@ function Login() {
           sessionStorage.setItem('userId', data.result.userId);
           sessionStorage.setItem('token', data.result.token);
           sessionStorage.setItem('roleName',data.result.role.roleName);
-          navigate('/Tasks');
+          navigate('/ManagerTasks');
 
         } else {
           const data = result;
@@ -79,6 +79,9 @@ function Login() {
           <div className="className='mb-2'">
           <div className="textc">
             Don't have account ?<Link to='/Register'> Register here</Link>
+          </div>
+          <div className="textc text-danger">
+           <Link to='/updatepass'> Forgot Password</Link>
           </div>
 
           </div></center>

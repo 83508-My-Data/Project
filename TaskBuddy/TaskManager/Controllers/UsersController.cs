@@ -106,16 +106,22 @@ namespace TaskBuddy.Controllers
             User user = _Context.Users.Find(id);
             user.FirstName = userUpdated.FirstName;
             user.LastName = userUpdated.LastName;
-            if (userUpdated.Email.Equals(user.Email))
-            {
-                return new ApiResponse<string> { status = false, Msg = "Email Already Registered", result = "Change Email" };
-            }
             user.Email = userUpdated.Email;
             user.Address= userUpdated.Address;
             user.UpdatedAt= DateTime.Now;
             user.MobileNo= userUpdated.MobileNo;
             user.DOB= userUpdated.DOB;
-            _Context.SaveChanges();
+            foreach (var emp in _Context.Users)
+            {
+                if (!userUpdated.Email.Equals(emp.Email))
+                {
+                    if (emp.Email.Equals(user.Email))
+                    {
+                        return new ApiResponse<string> { status = false, Msg = "Email Already Registered", result = "Change Email" };
+                    }
+                }
+            }
+                _Context.SaveChanges();
             return new ApiResponse<string> { status = true, Msg = "Successfully Updated", result = "Updated" };
         }
 

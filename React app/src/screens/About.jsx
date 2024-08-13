@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar1 from '../component/Navbar1'
+import Navbar from '../component/Navbar'
 import Sidebar from '../component/Sidebar';
 import '../Style/About.css'
 
@@ -10,7 +10,7 @@ const About = () => {
     <>
     <div className='container-fluid'>
     <div className="app-container">
-      <Navbar1 />
+      <Navbar />
       <div className="main-content">
         <Sidebar />
         <div className="page-content">

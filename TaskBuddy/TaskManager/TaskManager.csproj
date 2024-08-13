@@ -29,4 +29,10 @@
     <Folder Include="Upload\Files\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmailServices\EmailServices.csproj" />
+  </ItemGroup>
+
+  
+
 </Project>

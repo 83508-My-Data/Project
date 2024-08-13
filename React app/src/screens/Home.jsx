@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import Navbar1 from "../component/Navbar1";
+import Navbar from "../component/Navbar";
 import '../Style/Home.css';
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
  
     return (
         <div className="home-container-fluid">
-            <Navbar1 />
+            <Navbar />
             <div>
             <hr />
                 <h1>

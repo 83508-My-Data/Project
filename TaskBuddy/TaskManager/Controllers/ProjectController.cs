@@ -81,7 +81,7 @@ namespace TaskManager.Controllers
             project.manager = _context.Users.Find(projectDto.ManagerId);
             _context.Projects.Add(project);
             _context.SaveChanges();
-            return Ok("Department Added Successfully");
+            return Ok("Project Added Successfully");
 
         }
 

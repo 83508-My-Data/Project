@@ -11,14 +11,12 @@ const Sidebar = () => {
           <a href="#home"><u>Home</u></a>
         </li>
         <li className="sidebar-menu-item">
-          <a href="#analytics"><u>My Profile</u></a>
+          <a href="/myProfile"><u>My Profile</u></a>
         </li>
         <li className="sidebar-menu-item">
-          <a href="#settings"><u>Tasks</u></a>
+          <a href="/employeetask"><u>Tasks</u></a>
         </li>
-        <li className="sidebar-menu-item">
-          <a href="/Project"><u>Project</u></a>
-        </li>
+        
         <li className="sidebar-menu-item">
           <a href="#settings"><u>Department</u></a>
         </li>

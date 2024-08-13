@@ -72,6 +72,8 @@ const Register = () => {
   return (
     <div >
       <Navbar2 />
+      <br/>
+      <br/>
       <div id="bckimg">
         <div className="container mt-5">
           <div className="heading-container">

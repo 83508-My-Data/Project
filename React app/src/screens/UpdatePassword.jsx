@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'; 
 import '../Style/UpdatePassword.css'; 
-import Navbar1 from './../component/Navbar1';
+import Navbar2 from './../component/Navbar2';
 import Sidebar from './../component/Sidebar';
 
 export default function UpdatePassword() {
@@ -52,8 +52,8 @@ export default function UpdatePassword() {
 
   return (
     <div className="container-fluid">
-      <Navbar1 />
-      <Sidebar />
+      <Navbar2/>
+      
       <div className="row justify-content-center align-items-center min-vh-100">
         <div className="col-12 col-md-6 col-lg-4">
           <div className="card p-4 shadow-sm">

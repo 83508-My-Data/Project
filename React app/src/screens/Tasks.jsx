@@ -83,7 +83,7 @@ function Tasks() {
                 {tasks.length > 0 && (<div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
                 <table className="table table-striped table-bordered table-responsive caption-top">
                 <caption className="bg-black"><center><h3 className="text-light">Task List</h3></center></caption>
-                <thead className="table-dark">
+                <thead className="bg-black">
                     <tr>
                         <th scope="col">Task ID</th>
                         <th scope="col">Title</th>
