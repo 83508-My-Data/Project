@@ -10,6 +10,7 @@ import Register from './screens/Register';
 import Notification from './screens/Notification';
 import About from './screens/About';
 import EmployeeTasks from './screens/EmployeeTasks'
+import Admin from './screens/Admin'
 
 function App() {
   return (
@@ -37,6 +38,8 @@ function App() {
       <Route path='/myteam' element={<MyTeam></MyTeam>}/>
       <Route path='/addteam' element={<AddMyTeam></AddMyTeam>}/>
       <Route path='/updatepass' element={<UpdatePassword></UpdatePassword>}/>
+      <Route path='/admin' element={<Admin></Admin>} />
+      
       </Routes>
       <ToastContainer />
     </div>
