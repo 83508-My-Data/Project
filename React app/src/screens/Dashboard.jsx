@@ -1,44 +1,125 @@
+import React, { useState, useEffect } from "react";
 import Navbar1 from "../component/Navbar1";
 import Sidebar from "../component/Sidebar";
+import { GetEmpTeam } from "../Services/MyTeam";
+import getAllTasks from "../Services/tasks";
+import '../Style/Dashboard.css'; 
 
 function Dashboard() {
+    const [teams, setMyTeam] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [error, setError] = useState(null);
+
+    // Fetch data for teams and tasks
+    const loadData = async () => {
+        try {
+            const [teamsResult = [], tasksResult = []] = await Promise.all([
+                GetEmpTeam(),
+                getAllTasks()
+            ]);
+
+            // Check if the results are arrays
+            if (!Array.isArray(teamsResult)) {
+                console.error('Teams result is not an array:', teamsResult);
+                setMyTeam([]);
+            } else {
+                setMyTeam(teamsResult);
+            }
+
+            if (!Array.isArray(tasksResult)) {
+                console.error('Tasks result is not an array:', tasksResult);
+                setTasks([]);
+            } else {
+                setTasks(tasksResult);
+            }
+
+        } catch (error) {
+            console.error('Failed to fetch data:', error);
+            setError('Failed to load data. Please try again later.');
+        }
+    };
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
     return (
-        <div className="container-fluid">
+        <div className="dashboard-container">
             <Navbar1 />
             <div className="row">
                 <div className="col-2">
                     <Sidebar />
                 </div>
-                <div className="col">
-                    <h1>hello</h1>
+                <div className="col-10">
+                    <h1 className="dashboard-title">Dashboard</h1>
+                    {error && <div className="alert alert-error">{error}</div>}
                     
+                    {/* Teams Section */}
+                    <div className="dashboard-section">
+                        <h2 className="section-title">Teams</h2>
+                        {teams.length > 0 ? (
+                            <div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
+                                <table className="table table-striped table-bordered">
+                                    <thead className="table-dark">
+                                        <tr>
+                                            <th>Team ID</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Lead</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {teams.map((team) => (
+                                            <tr key={team.id}>
+                                                <td>{team.id}</td>
+                                                <td>{team.name}</td>
+                                                <td>{team.description}</td>
+                                                <td>{team.lead}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <p>No teams available</p>
+                        )}
+                    </div>
 
-                    <div className="table-responsive">
-                    <table className="table table-striped table-bordered table-responsive">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Firstname</th>
-                        <th>Lastname</th>
-                        <th>Email</th>
-                        <th>Mobile</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                        <tr>
-                            <td>1</td>
-                            <td>Rishabh</td>
-                            <td>Pandey</td>
-                            <td>r@gmail.com</td>
-                            <td>8817956102</td>
-                            <td>Raipur</td>
-                        </tr>
-                    
-                </tbody>
-            </table>
-
+                    {/* Tasks Section */}
+                    <div className="dashboard-section">
+                        <h2 className="section-title">Tasks</h2>
+                        {tasks.length > 0 ? (
+                            <div className="table-responsive shadow-lg mb-5 bg-body-tertiary rounded">
+                                <table className="table table-striped table-bordered">
+                                    <thead className="table-dark">
+                                        <tr>
+                                            <th>Task ID</th>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Status</th>
+                                            <th>Priority</th>
+                                            <th>Assigned To</th>
+                                            <th>Deadline</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {tasks.map((task) => (
+                                            <tr key={task.id}>
+                                                <td>{task.id}</td>
+                                                <td>{task.title}</td>
+                                                <td>{task.description}</td>
+                                                <td>{task.status}</td>
+                                                <td>{task.priority}</td>
+                                                <td>{task.assignedTo}</td>
+                                                <td>{new Date(task.deadline).toLocaleDateString()}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <p>No tasks available</p>
+                        )}
                     </div>
                 </div>
             </div>

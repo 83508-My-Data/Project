@@ -1,0 +1,35 @@
+.gradient-custom {
+    /* Fallback for older browsers */
+    background: #c2923f;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    
+    /* Additional styles */
+    color: white; /* Ensures the text color is readable */
+    padding: 20px; /* Adds padding inside the gradient container */
+    border-radius: .5rem; /* Rounds the corners */
+    text-align: center; /* Centers the text inside the container */
+    font-size: 25px;
+
+}
+.main-container{
+    width: auto;
+    height: auto;
+}
+/* Increase font size for headings within the information div */
+.card-body h4 {
+    font-size: 1.5rem; /* Adjust the size as needed */
+}
+
+.card-body h6 {
+    font-size: 1.4rem; /* Adjust the size as needed */
+}
+
+/* Increase font size for paragraphs within the information div */
+.card-body p {
+    font-size: 1.2rem; /* Adjust the size as needed */
+}
