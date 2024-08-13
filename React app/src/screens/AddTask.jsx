@@ -27,11 +27,11 @@ function AddTask(){
 const onAddTask= async (e) => {
     e.preventDefault();
     debugger
-    if(title.length === 0){
+    if(title.length == 0){
         toast.error("Please eneter Title")
-    }else if(priority === ""){
+    }else if(priority == ""){
         toast.error("Please select priority")
-    }else if(description.length === 0){
+    }else if(description.length == 0){
         toast.error("Please enter description")
     }else if(!attachment){
         toast.error("Please enter Deadline Date")
@@ -41,9 +41,9 @@ const onAddTask= async (e) => {
         toast.error("Please select Project")
     }else if(!employeeId){
         toast.error("Please select Employee")
-    }else if(comment.length === 0){
+    }else if(comment.length == 0){
         toast.error("Please enter Comment ")
-    }else if(deadline.length === ''){
+    }else if(deadline.length == ''){
         toast.error("Please enter Deadline Date")
     }else{
         var userId = parseInt(employeeId)

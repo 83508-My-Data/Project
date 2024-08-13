@@ -1,7 +1,7 @@
 import axios from "axios";
- async function getTask(){
+ async function getTask(id){
     try {
-        const id= sessionStorage.getItem("userId")
+        
         var response = await axios.get(`https://localhost:7104/editLoad/${id}`)
         return response.data
     } catch (ex) {
