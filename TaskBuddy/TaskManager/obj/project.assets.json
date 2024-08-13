@@ -4300,19 +4300,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
+    "C:\\Users\\anike\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "projectUniqueName": "D:\\sunbeam data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
       "projectName": "TaskManager",
-      "projectPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
-      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "E:\\Balle\\Project\\Project\\TaskBuddy\\TaskManager\\obj\\",
+      "projectPath": "D:\\sunbeam data\\Project\\TaskBuddy\\TaskManager\\TaskManager.csproj",
+      "packagesPath": "C:\\Users\\anike\\.nuget\\packages\\",
+      "outputPath": "D:\\sunbeam data\\Project\\TaskBuddy\\TaskManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anike\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4332,6 +4332,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4398,7 +4403,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

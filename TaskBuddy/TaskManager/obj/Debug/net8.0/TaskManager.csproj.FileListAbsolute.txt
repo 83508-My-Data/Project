@@ -694,3 +694,5 @@ E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
 E:\Balle\Project\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
 D:\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
+D:\sunbeam data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Castle.Core.dll
+D:\sunbeam data\Project\TaskBuddy\TaskManager\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Proxies.dll
