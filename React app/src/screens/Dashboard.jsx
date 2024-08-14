@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar1 from "../component/Navbar1";
-import Sidebar from "../component/Sidebar";
+import Sidebare from "../component/Sidebare";
 import { GetEmpTeam } from "../Services/MyTeam";
 import getAllTasks from "../Services/tasks";
 import '../Style/Dashboard.css'; 
@@ -48,7 +48,7 @@ function Dashboard() {
             <Navbar1 />
             <div className="row">
                 <div className="col-2">
-                    <Sidebar />
+                    <Sidebare />
                 </div>
                 <div className="col-10">
                     <h1 className="dashboard-title">Dashboard</h1>
