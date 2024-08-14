@@ -14,8 +14,9 @@ export default async function GetEmp()
 export  async function AddEmpToTeam(empid)
 {
     try {
+        const userId=empid
         const mngid= sessionStorage.getItem("userId")
-        const body={empid,mngid}
+        const body={userId,mngid}
         const response = await axios.post(`https://localhost:7104/addemp`,body
         );
         console.log(response.data)

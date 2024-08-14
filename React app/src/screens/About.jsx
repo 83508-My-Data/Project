@@ -12,7 +12,7 @@ const About = () => {
     <div className="app-container">
       <Navbar />
       <div className="main-content">
-        <Sidebar />
+    
         <div className="page-content">
           <div className='bgcolor-blue'>
             <div className="about-us-container">

@@ -17,6 +17,10 @@ function MyTeam()
     {
         GetEmpList();
     },[])
+    const addTask=()=>
+    {
+        navigate('/addtask')
+    }
     return (
         <div className="container-fluid">
             <Navbar1></Navbar1>
@@ -52,7 +56,7 @@ function MyTeam()
                                         <td>
                                             <button 
                                                 className='btn btn-warning btn-sm'
-                                                //onClick={() => onAddEmp(employees.userId)}
+                                                onClick={() => addTask(employees.userId)}
                                             >
                                                 Assign Task
                                             </button>

@@ -158,10 +158,10 @@ namespace TaskBuddy.Controllers
             return users;
         }
         [HttpPost("/addemp")]
-        public string AddEmpMyTeam(int empid, int mngid)
+        public string AddEmpMyTeam([FromBody]AddMyTeamDto myteam)
         {
-            User userToBeAdded = _Context.Users.Find(empid);
-            userToBeAdded.ManagerId = mngid;
+            User userToBeAdded = _Context.Users.Find(myteam.userId);
+            userToBeAdded.ManagerId = myteam.mngId;
             _Context.SaveChanges();
             return "Employee Is added to team";
         }

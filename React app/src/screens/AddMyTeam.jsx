@@ -63,7 +63,7 @@ function AddMyTeam() {
                                         <td>
                                             <button 
                                                 className='btn btn-success btn-sm'
-                                                onClick={() => onAddEmp(employees.userId)}
+                                                onClick={() => onAddEmp(employee.userId)}
                                             >
                                                 Add to team
                                             </button>
