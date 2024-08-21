@@ -154,7 +154,16 @@ function EmployeeTasks() {
                             <td >{task.description}</td>
                             <td><label>{task.attachmentPath}</label>
                                 <button className="btn btn-success" disabled={disable} onClick={()=>{download(task.taskId)}} >Download</button></td> 
-                            <td >{task.status}</td>
+                            <td >{task.status ? (
+                                <div className="progress mt-5">
+                                    <div className="progress-bar-striped bg-info text-white" role="progressbar" style={{width: 100}}> 100%</div>
+                                </div>
+                            ): (
+                                <div className="progress mt-5">
+                                    <div className="progress-bar-striped bg-danger text-white" role="progressbar" style={{width: 100}}> 0%</div>
+                                </div>
+                            )
+                            }</td>
                             <td >{task.uploadAt}</td>
                             <td >{task.priority}</td>
                             <td >{task.category.taskName}</td>

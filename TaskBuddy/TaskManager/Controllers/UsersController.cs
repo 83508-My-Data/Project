@@ -97,7 +97,7 @@ namespace TaskBuddy.Controllers
             }
             _Context.Users.Add(user);
             _Context.SaveChanges();
-            return new ApiResponse<string> { status = true, Msg = "Successfully Added", result = "Created"};
+            return new ApiResponse<string> { status = true, Msg = "Register Successfully", result = "Created"};
         }
 
         [HttpPut("{id}")]
@@ -106,22 +106,31 @@ namespace TaskBuddy.Controllers
             User user = _Context.Users.Find(id);
             user.FirstName = userUpdated.FirstName;
             user.LastName = userUpdated.LastName;
-            user.Email = userUpdated.Email;
-            user.Address= userUpdated.Address;
-            user.UpdatedAt= DateTime.Now;
-            user.MobileNo= userUpdated.MobileNo;
-            user.DOB= userUpdated.DOB;
-            foreach (var emp in _Context.Users)
+            user.Address = userUpdated.Address;
+            user.UpdatedAt = DateTime.Now;
+            user.DOB = userUpdated.DOB;
+            if (!userUpdated.Email.Equals(user.Email) || !userUpdated.MobileNo.Equals(user.MobileNo)) 
             {
-                if (!userUpdated.Email.Equals(emp.Email))
+                foreach (var emp in _Context.Users)
                 {
-                    if (emp.Email.Equals(user.Email))
+                    if (emp.Email.Equals(userUpdated.Email) && emp.MobileNo.Equals(userUpdated.MobileNo))
+                    {
+                        return new ApiResponse<string> { status = false, Msg = "Email and Number Already Registered", result = "Change Email and Mobile Number" };
+                    }
+                    else if (emp.Email.Equals(userUpdated.Email) && !userUpdated.Email.Equals(user.Email))
                     {
                         return new ApiResponse<string> { status = false, Msg = "Email Already Registered", result = "Change Email" };
                     }
+                    else if (!userUpdated.MobileNo.Equals(user.MobileNo) && emp.MobileNo.Equals(userUpdated.MobileNo))
+                    {
+                        return new ApiResponse<string> { status = false, Msg = "Mobile Already Registered", result = "Change Mobile Number" };
+                    }
+
                 }
             }
-                _Context.SaveChanges();
+            user.Email = userUpdated.Email;
+            user.MobileNo= userUpdated.MobileNo;
+            _Context.SaveChanges();
             return new ApiResponse<string> { status = true, Msg = "Successfully Updated", result = "Updated" };
         }
 
@@ -196,6 +205,18 @@ namespace TaskBuddy.Controllers
             return "password not updated successfully";
 
 
+        }
+
+        [HttpPut("/addManager/{Id}")]
+        public string ChangeManager(int Id)
+        {
+            User user = _Context.Users.Find(Id);
+            user.role = (from roles in _Context.Roles
+                           where roles.RoleName == "Manager"
+                           select roles).FirstOrDefault();
+            user.Manager = null;
+            _Context.SaveChanges();
+            return "Employee Role Changed";
         }
     }
 }

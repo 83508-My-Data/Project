@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar1 from "../component/Navbar1";
-import Sidebar from '../component/Sidebar';
+import Sidebare from '../component/Sidebare';
 import '../Style/MyprofileFinal.css'; 
 import photo from '../images/photo.jpg'
 import getProfile from '../Services/myprofileFinal';
 import { useNavigate} from 'react-router-dom';
+import SidebarM from '../component/SidebarM';
 
 const MyProfileFinal = () => {
    
@@ -43,11 +44,13 @@ const MyProfileFinal = () => {
         return <div>{error}</div>;
     }
 
+    const role = sessionStorage.getItem("roleName")
+
     return (
         <div className="main-container">
             <Navbar1 />
-            <Sidebar />
-        
+            {role == "Employee" && <Sidebare />}
+                    {role == "Manager" && <SidebarM />}
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-12 mb-4 mb-lg-0">

@@ -4,6 +4,7 @@ import Sidebare from "../component/Sidebare";
 import { GetEmpTeam } from "../Services/MyTeam";
 import getAllTasks from "../Services/tasks";
 import '../Style/Dashboard.css'; 
+import SidebarM from "../component/SidebarM";
 
 function Dashboard() {
     const [teams, setMyTeam] = useState([]);
@@ -43,12 +44,15 @@ function Dashboard() {
         loadData();
     }, []);
 
+    const role = sessionStorage.getItem("roleName")
+
     return (
         <div className="dashboard-container">
             <Navbar1 />
             <div className="row">
                 <div className="col-2">
-                    <Sidebare />
+                    {role == "Employee" && <Sidebare />}
+                    {role == "Manager" && <SidebarM />}
                 </div>
                 <div className="col-10">
                     <h1 className="dashboard-title">Dashboard</h1>

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 
 function Navbar() {
+  const id= sessionStorage.getItem("userId")
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -16,6 +17,7 @@ function Navbar() {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
+            {id == undefined &&
               <Link
                 to='/home'
                 className='nav-link'
@@ -23,6 +25,16 @@ function Navbar() {
               >
                 <b><u>Home</u></b>
               </Link>
+              }
+              {id != undefined &&
+              <Link
+                to='/dashboard'
+                className='nav-link'
+                aria-current='page'
+              >
+                <b><u>Dashboard</u></b>
+              </Link>
+              }
             </li>
             <li className='nav-item'>
               <Link
@@ -43,22 +55,23 @@ function Navbar() {
               </Link>
             </li>
             <li className='nav-item'>
-              <Link
+              {id == undefined && <Link
                 to='/register'
                 className='nav-link'
                 aria-current='page'
               >
                 <b><u>Register</u></b>
-              </Link>
+              </Link>}
             </li>
             <li className='nav-item'>
+            {id == undefined &&
               <Link
-                to='/login'
-                className='nav-link'
-                aria-current='page'
-              >
-                <b><u>Login</u></b>
-              </Link>
+              to='/login'
+              className='nav-link'
+              aria-current='page'
+            >
+              <b><u>Login</u></b>
+            </Link>}
             </li>
           </ul>
         </div>

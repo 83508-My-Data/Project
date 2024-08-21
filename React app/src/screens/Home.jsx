@@ -31,8 +31,10 @@ const Home = () => {
                     Priortize and Achieve your goals effortlessly...
                 </h3>
 
-                <button onClick={goToLogin}>Get Started</button>
-                <button onClick={goToAbout}>Know More</button>
+                <center>
+                    <button className="button1" onClick={goToLogin}>Get Started</button>
+                    <button className="button" onClick={goToAbout}>Know More</button>
+                </center>
                 
             </div>
         </div>
