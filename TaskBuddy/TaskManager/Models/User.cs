@@ -12,15 +12,15 @@ namespace TaskManager.Models
         public int UserId { get; set; }
 
         [Column("First_Name", TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(50)]
         public string FirstName { get; set; }
 
         [Column("Last_Name", TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(50)]
         public string LastName { get; set; }
 
         [Column("Email", TypeName = "varchar")]
-        [StringLength(25)]
+        [StringLength(250)]
         public string Email { get; set; }
 
         [Column("Password", TypeName = "varchar")]

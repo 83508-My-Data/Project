@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import '../Style/Navbar1.css'; 
+import { useEffect, useState } from 'react';
 
 
 function Navbar1() {
+  
+  const id= sessionStorage.getItem("userId")
   return (
     <nav
       className="navbar navbar-expand-lg navbar-light"
@@ -17,6 +20,7 @@ function Navbar1() {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
+            {id == undefined &&
               <Link
                 to='/home'
                 className='nav-link'
@@ -24,6 +28,16 @@ function Navbar1() {
               >
                 <b><u>Home</u></b>
               </Link>
+              }
+              {id != undefined &&
+              <Link
+                to='/dashboard'
+                className='nav-link'
+                aria-current='page'
+              >
+                <b><u>Dashboard</u></b>
+              </Link>
+              }
             </li>
             <li className='nav-item'>
               <Link

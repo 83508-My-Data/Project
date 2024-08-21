@@ -5,7 +5,7 @@ import Navbar2 from '../component/Navbar2';
 
 import { toast } from 'react-toastify';
 import register from '../Services/register';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -46,6 +46,8 @@ const Register = () => {
       toast.error('Please enter date of birth');
     } else if (mobile.length === 0) {
       toast.error('Please enter mobile');
+    } else if (mobile.length != 10) {
+      toast.error('Please enter valid 10 digit mobile');
     } else if (address.length === 0) {
       toast.error('Please enter address');
     } else if (role.length === 0) {

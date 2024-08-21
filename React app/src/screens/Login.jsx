@@ -47,7 +47,7 @@ function Login() {
     <div className="bckimg">
       <Navbar />
       <div className="container d-flex justify-content-center align-items-center min-vh-100" >
-        <div className="login-box shadow-lg p-4 rounded bg-white">
+        <div className="login-box shadow-lg p-4 rounded">
           <h2 className="text-center mb-4">Login</h2>
           <div className="form-group mb-3">
             <label htmlFor="email"><b>Email:</b></label>
@@ -78,10 +78,10 @@ function Login() {
           <center>
           <div className="className='mb-2'">
           <div className="textc">
-            Don't have account ?<Link to='/Register'> Register here</Link>
+            Don't have account ?<Link to='/Register' className="text-success"> Register here</Link>
           </div>
           <div className="textc text-danger">
-           <Link to='/updatepass'> Forgot Password</Link>
+           <Link to='/updatepass' className="text-danger"> Forgot Password</Link>
           </div>
 
           </div></center>
